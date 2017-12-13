@@ -1,0 +1,819 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Display grades</title>
+<link rel="stylesheet" type="text/css" href="/Matlab/style-sheets/default/style_sheet.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body link="#003366" alink="#003366" vlink="#003366" bgcolor="white" text="black" font="sans-serif,arial,helvetica">
+<FONT FACE=sans-serif,arial,helvetica COLOR="black">
+<SCRIPT>
+function openwin(target,width,height) {
+  var defopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1";
+  var wh = defopts + ",width="+ width + ", height=" + height;
+  var remotewindow = window.open("",target,defopts);
+  if (!remotewindow.opener) remotewindow.opener=self;
+  return remotewindow;
+}
+</SCRIPT>
+
+<TABLE width=100% BORDER=0  CELLPADDING=5 CELLSPACING=0><TR><TD align=left valign=center><FONT SIZE=+2><STRONG>Your Graded Project</STRONG></FONT></TD><TD align=RIGHT valign=center><img src=/Matlab/icons/common/user.gif border=0><strong>MatthewA Delaguila</strong></td></TR><TR><TD COLSPAN=2 VALIGN=bottom ALIGN=CENTER><A HREF=http://www.math.csi.cuny.edu/ TARGET=_top >Main</A> | <A HREF=ClassOutline TARGET=_top >New Project</A> | <A HREF=/MATLAB/Student/StudentPrefs TARGET=_top >Preferences</A> | <A HREF=/MATLAB/Email/SendEmail TARGET=EMAILPROF  onClick="openwin('EMAILPROF',600,450)">Send e-mail</A> | <A HREF=/MATLAB/Student/StudentNotes TARGET=NOTES  onClick="openwin('NOTES',600,450)">Messages</A> | <A HREF=/Matlab/Student/StudentManual.html TARGET=MANUAL  onClick="openwin('MANUAL',600,450)">Manual</A> | <A HREF=/MATLAB/Bug_Report TARGET=BUGREPORT  onClick="openwin('BUGREPORT',600,450)">Bugs</A> | <A HREF=/MATLAB/LogOut TARGET=_top >LogOut</A></TD></TR></TABLE><HR WIDTH=100% ALIGN=center>
+<form method="post" action="/MATLAB/Student/CheckGrade?section=42029561&class=62401530&professor=fabregat&topic=84216587" enctype="multipart/form-data">
+<CENTER><p class="Message">Your grade and any comment from the professor appears with each question.</p></CENTER> 
+     
+
+
+<style>
+pre {font-size: 1.2em; background-color: #EEF0F5;}
+ul li {list-style-image: url(http://www.math.csi.cuny.edu/static/images/julia.png);}  
+</style>
+
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Questions to be handed in  on limits</h2>
+<div class="p"><!----></div>
+To get started, we load the <tt>MTH229</tt> package so that we can make plots and use some symbolic math:
+<pre>
+using&nbsp;MTH229
+
+</pre>
+
+
+      <h4><a name="tth_sEc1.0.1">
+1.0.1</a>&nbsp;&nbsp;Quick background</h4>
+<div class="p"><!----></div>
+Read about this material here: <a href="http://mth229.github.io/limits.html">Investigating limits with Julia</a>.
+<div class="p"><!----></div>
+For the impatient, the expression
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; <i>c</i></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<i>f</i>(<i>x</i>) = <i>L</i></td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+says that the limit as <i>x</i> goes to <i>c</i> of <i>f</i> is <i>L</i>. If <i>f</i>(<i>x</i>) is <i>continuous</i> at <i>x</i>=<i>c</i>, the <i>L</i>=<i>f</i>(<i>c</i>). This is almost always the case for a randomly chosen <i>c</i> - but almost never the case for a textbook choice of <i>c</i>. Invariably with text books - though not always - we will have <tt>f(c) = NaN</tt> indicating the function is indeterminate at <tt>c</tt>. For such cases we need to do more work to identify if any such <i>L</i> exists and when it does, what its value is.
+<div class="p"><!----></div>
+We can investigate limits three ways: analytically, with a table of numbers, or graphically. Here we focus on two ways: graphically or numerically.
+<div class="p"><!----></div>
+Investigating a limit numerically requires us to operationalize the idea of <i>x</i> getting close to <i>c</i> and <i>f</i>(<i>x</i>) getting close to <i>L</i>. Here we do this manually:
+<pre>
+f(x)&nbsp;=&nbsp;sin(x)/x
+f(0.1),&nbsp;f(0.01),&nbsp;f(0.001),&nbsp;f(0.0001),&nbsp;f(0.00001),&nbsp;f(0.000001)
+
+</pre>
+
+<pre>
+(0.9983341664682815,0.9999833334166665,0.9999998333333416,0.9999999983333334,0.9999999999833332,0.9999999999998334)
+</pre>
+
+<div class="p"><!----></div>
+From this we see a <i>right</i> limit at 0 appears to be 1.
+<div class="p"><!----></div>
+We can put into a column, but wrapping things in braces:
+<pre>
+[f(0.1),&nbsp;f(0.01),&nbsp;f(0.001),&nbsp;f(0.0001),&nbsp;f(0.00001),&nbsp;f(0.000001)]
+
+</pre>
+
+<pre>
+6-element&nbsp;Array{Float64,1}:
+&nbsp;0.998334
+&nbsp;0.999983
+&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</pre>
+
+<div class="p"><!----></div>
+The compact printing makes it clear, the limit here should be <i>L</i>=1.
+<div class="p"><!----></div>
+Limits when <i>c</i> &#8800; 0 are similar, but require points getting close to <i>c</i>. For example, 
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; &#960;/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1 &#8722; sin(<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(&#960;/2 &#8722; <i>x</i>)<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+has a limit of 1/2. We can investigate with:
+<pre>
+c&nbsp;=&nbsp;pi/2
+f(x)&nbsp;=&nbsp;(1&nbsp;-&nbsp;sin(x))/(pi/2&nbsp;-&nbsp;x)^2
+[f(c+.1),&nbsp;f(c+.001),&nbsp;f(c+.00001),&nbsp;f(c+.0000001),&nbsp;f(c+.000000001)]
+
+</pre>
+
+<pre>
+5-element&nbsp;Array{Float64,1}:
+&nbsp;0.499583
+&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;0.4996&nbsp;&nbsp;
+&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</pre>
+
+<div class="p"><!----></div>
+Wait, is the limit 1/2 or 0? At first 1/2 seems like the answer, but the last number is 0.
+<div class="p"><!----></div>
+Here we see a limitation of tables - when numbers get too small, that fact that they are represented in floating point becomes important. In this case, for numbers too close to &#960;/2 the value on the computer for <tt>sin(x)</tt> is just 1 and not a number near 1. Hence the denominator becomes 0, and so then the expression. (Near 1, the floating point values are about 10<sup>&#8722;16</sup> apart, so when two numbers are within 10<sup>&#8722;16</sup> of each other, they can be rounded to the same number.)  So watch out when seeing what the values of <i>f</i>(<i>x</i>) get close to. Here it is clear that the limit is heading towards 0.5 until we get too close.
+<div class="p"><!----></div>
+For convenience, this function from the <tt>MTH229</tt> package can make the above computations easier to do:
+<pre>
+function&nbsp;lim(f::Function,&nbsp;c::Real;&nbsp;n::Int=6,&nbsp;dir="+")
+	&nbsp;hs&nbsp;=&nbsp;[(1/10)^i&nbsp;for&nbsp;i&nbsp;in&nbsp;1:n]&nbsp;#&nbsp;close&nbsp;to&nbsp;0
+	&nbsp;if&nbsp;dir&nbsp;==&nbsp;"+"
+	&nbsp;&nbsp;&nbsp;xs&nbsp;=&nbsp;c&nbsp;+&nbsp;hs&nbsp;
+	&nbsp;else
+	&nbsp;&nbsp;&nbsp;xs&nbsp;=&nbsp;c&nbsp;-&nbsp;hs
+	&nbsp;end
+	&nbsp;ys&nbsp;=&nbsp;map(f,&nbsp;xs)
+	&nbsp;[xs&nbsp;ys]
+end
+
+</pre>
+
+<pre>
+lim&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+It use follows the common pattern: <tt>action(function, arguments...)</tt>. E.g.,
+<pre>
+f(x)&nbsp;=&nbsp;(1&nbsp;-&nbsp;sin(x))/(pi/2&nbsp;-&nbsp;x)^2
+lim(f,&nbsp;pi/2)
+
+</pre>
+
+<pre>
+6x2&nbsp;Array{Float64,2}:
+&nbsp;1.6708&nbsp;&nbsp;&nbsp;0.499583
+&nbsp;1.5808&nbsp;&nbsp;&nbsp;0.499996
+&nbsp;1.5718&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.5709&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.57081&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.5708&nbsp;&nbsp;&nbsp;0.500044
+</pre>
+
+      <h4><a name="tth_sEc1.0.2">
+1.0.2</a>&nbsp;&nbsp;Graphical approach</h4>
+<div class="p"><!----></div>
+The graphical approach is to plot the expression near <i>c</i> and look visually what <i>f</i>(<i>x</i>) goes to as <i>x</i> gets close to <i>c</i>.
+<div class="p"><!----></div>
+A graphical approach doesn't give as many significant digits, but won't have this floating point error. Here is a graph to investigate the same problem. We simply graph near <i>c</i> and look:
+<pre>
+plot(f,&nbsp;c&nbsp;-&nbsp;pi/6,&nbsp;c&nbsp;+&nbsp;pi/6)
+
+</pre>
+
+<img alt="Embedded Image" src="data:image/png;base64,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">
+
+
+
+<div class="p"><!----></div>
+From the graph, we see clearly that as <i>x</i> is close to &#960;/2, <i>f</i>(<i>x</i>) is close to 1/2. (The fact that <tt>f(pi/2) = NaN</tt> will either not come up, as <tt>pi/2</tt> is not among the points sampled or the <tt>NaN</tt> values will not be plotted.)
+     <h3><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;Questions: Graphical approach</h3>
+<ul>
+<li> Plot the function to estimate the limit. What is the value?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small>&#952;&#8594; 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin(5&#952;)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>sin(2&#952;)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 1-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-1" value="2.5" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 1 -->
+
+
+
+<ul>
+<li> Plot a function to estimate the limit. What is the value?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+2<sup><i>x</i></sup> &#8722; cos(<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 2-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-2" value="0.7" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 2 -->
+
+
+
+<ul>
+<li> Plot the function to estimate the limit. What is the value?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small>&#952;&#8594; 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin<sup>2</sup>(4&#952;)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>cos(&#952;) &#8722; 1<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 3-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-3" value="-32" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 3 -->
+
+
+
+     <h3><a name="tth_sEc1.2">
+1.2</a>&nbsp;&nbsp;Questions: Tables</h3>
+<ul>
+<li> This expression is indeterminate at 0 of the type 0/0:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1&#8722;cos(<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+What value does <tt>julia</tt> return if you try to evaluate it a 0?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 4-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-4" value="NaN" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 4 -->
+
+
+
+<ul>
+<li> This expression is indeterminate at 0 of the type 0 &#183;&#8734;:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>x</i>log(<i>x</i>).</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 5-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-5" value="NaN" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 5 -->
+
+
+
+<ul>
+<li> This expression is indeterminate at 0 of the type 0<sup>0</sup>:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>x</i><sup>1/log(<i>x</i>)</sup>.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+What value does <tt>julia</tt> return?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 6-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-6" value="1.0" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 6 -->
+
+
+
+<ul>
+<li> This expression is indeterminate at at &#960;/2 of the type 0/0.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<i>cos</i>(<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#960;/2 &#8722; <i>x</i><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+What value does <tt>julia</tt> return?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 7-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-7" value="Inf" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 7 -->
+
+
+
+<ul>
+<li>  Find the limit using a table. Show your commands.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0+</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+cos(<i>x</i>) &#8722; 1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 8-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-8"  rows="3" cols="60" wrap="virtual">f(x)=(cos(x)-1)/(x)
+c=0
+[f(c+.1), f(c+.001), f(c+.00001), f(c+.0000001), f(c+.000000001)]</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 8 -->
+
+
+
+<div class="p"><!----></div>
+What is the estimated value of the limit? 
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 9-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-9" value="0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 9 -->
+
+
+
+<ul>
+<li>  Find the limit using a table. What is the estimated value of the limit?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0+</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin(5<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 10-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-10" value="5.0 " size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 10 -->
+
+
+
+<ul>
+<li> Find the limit using a table. What are your commands? What is the estimated value? (You need    values getting close to 3 not 0.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 3</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<i>x</i><sup>3</sup> &#8722; 2<i>x</i><sup>2</sup> &#8722;9
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><sup>2</sup> &#8722; 2<i>x</i> &#8722;3<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+The commands are:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 11-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-11"  rows="3" cols="60" wrap="virtual">f(x)=(x^3-2*x^2-9)/(x^2-2*x-3)
+c=3
+lim(f,c)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 11 -->
+
+
+
+<div class="p"><!----></div>
+The value is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 12-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-12" value="3.75 " size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 12 -->
+
+
+
+<ul>
+<li> Find this limit using a table. What is the estimated value?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin<sup>&#8722;1</sup>(4<i>x</i>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>sin<sup>&#8722;1</sup>(5<i>x</i>)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 13-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-13" value="0.8" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 13 -->
+
+
+
+<ul>
+<li> Find the <i>left</i> limit of <tt>f(x) = cos(pi/2*(x - floor(x)))</tt> as <i>x</i>    goes to 2.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 14-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-14" value="0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 14 -->
+
+
+
+<ul>
+<li> Find the limit using a table. What is the estimated value? Recall,    <tt>atan</tt> and <tt>asin</tt> are the names for the appropriate inverse    functions.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0+</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+tan<sup>&#8722;1</sup>(<i>x</i>) &#8722; 1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>sin<sup>&#8722;1</sup>(<i>x</i>) &#8722; 1<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 15-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-15" value="1.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 15 -->
+
+
+
+     <h3><a name="tth_sEc1.3">
+1.3</a>&nbsp;&nbsp;Symbolic limits</h3>
+<div class="p"><!----></div>
+The add-on package <tt>SymPy</tt> can compute the limit of a simple algebraic function of a single variable quite well. The package is loaded when <tt>MTH229</tt> is.
+<div class="p"><!----></div>
+<tt>SymPy</tt> provides the <tt>limit</tt> function. It is called just as our <tt>lim</tt> function is above. For example:
+<pre>
+f(x)&nbsp;=&nbsp;sin(x)/x
+limit(f,&nbsp;0)
+
+</pre>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table>
+</td></tr></table>
+
+
+<div class="p"><!----></div>
+(This is a simplified form of the <tt>limit</tt> function, <tt>SymPy</tt> has more generality.)
+<ul>
+<li> Find this limit using <tt>SymPy</tt> (use a decimal value for your answer, not a fraction):
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 3</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1/<i>x</i> &#8722; 1/3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><sup>2</sup> &#8722; 9<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 16-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-16" value="-0.018518518518518517" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 16 -->
+
+
+
+<ul>
+<li> Find this limit using <tt>SymPy</tt>:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin(<i>x</i><sup>2</sup>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i>tan(<i>x</i>)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 17-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-17" value="1" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 17 -->
+
+
+
+<ul>
+<li>  Find the limit using <tt>SymPy</tt>. What is the estimated value?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />lim<br />
+<small><i>x</i> &#8594; 0+</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<i>x</i> &#8722; sin(&#124;<i>x</i>&#124;)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><sup>3</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 18-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-18" value="0.167" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 18 -->
+
+
+
+     <h3><a name="tth_sEc1.4">
+1.4</a>&nbsp;&nbsp;Other questions</h3>
+<ul>
+<li> Let <tt>f(x) = sin(sin(x)^2) / x^k</tt>. Consider <i>k</i>=1, 2, and 3. For   which of values of <i>k</i> does the limit at 0 <b>not</b> exist? (Repeat   the problem for the 3 different values.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 19-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-19" value="1" />
+
+
+
+
+
+k=1,2,3</label> <label><input type="radio" name="Problem-19" value="2" />
+
+
+
+
+
+k=2,3</label> <label><input type="radio" name="Problem-19" value="3" checked="checked" />
+
+
+
+
+
+k=3</label> <label><input type="radio" name="Problem-19" value="4" />
+
+
+
+
+
+it exists for all k </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 19 -->
+
+
+
+<ul>
+<li> Let <tt>l(x) = (a^x - 1)/x</tt> and <i>define</i> <i>L</i>(<i>a</i>) = lim<sub><i>x</i>&#8594; 0</sub> <i>l</i>(<i>x</i>,<i>a</i>).
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+Show that <i>L</i>(3 &#183;4) = <i>L</i>(3) + <i>L</i>(4) by computing all three limits numerically. (In general, you can show algebraically that <i>L</i>(<i>a</i>&#183;<i>b</i>) = <i>L</i>(<i>a</i>) + <i>L</i>(<i>b</i>) like a logarithm. Show your work.
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 20-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-20"  rows="3" cols="60" wrap="virtual">function L(a)
+    f(x)=(a^x-1)/x
+    limit(f,0)
+end
+[L(3*4),L(3)+L(4)]</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 20 -->
+
+
+
+<div class="p"><!----></div>
+<div><input type="hidden" name=".cgifields" value="Problem-19"  /></div></form>
+</body>
+</html>
+<CENTER><HR WIDTH="75%"></CENTER>
+<CENTER><ADDRESS>Powered by <A HREF=/MATLAB/About>e-Pupils</A>. Copyright &copy; 1998-2001. All rights reserved.</ADDRESS></CENTER>
+</body>
+</html>

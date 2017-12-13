@@ -1,0 +1,912 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Display grades</title>
+<link rel="stylesheet" type="text/css" href="/Matlab/style-sheets/default/style_sheet.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body link="#003366" alink="#003366" vlink="#003366" bgcolor="white" text="black" font="sans-serif,arial,helvetica">
+<FONT FACE=sans-serif,arial,helvetica COLOR="black">
+<SCRIPT>
+function openwin(target,width,height) {
+  var defopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1";
+  var wh = defopts + ",width="+ width + ", height=" + height;
+  var remotewindow = window.open("",target,defopts);
+  if (!remotewindow.opener) remotewindow.opener=self;
+  return remotewindow;
+}
+</SCRIPT>
+
+<TABLE width=100% BORDER=0  CELLPADDING=5 CELLSPACING=0><TR><TD align=left valign=center><FONT SIZE=+2><STRONG>Your Graded Project</STRONG></FONT></TD><TD align=RIGHT valign=center><img src=/Matlab/icons/common/user.gif border=0><strong>MatthewA Delaguila</strong></td></TR><TR><TD COLSPAN=2 VALIGN=bottom ALIGN=CENTER><A HREF=http://www.math.csi.cuny.edu/ TARGET=_top >Main</A> | <A HREF=ClassOutline TARGET=_top >New Project</A> | <A HREF=/MATLAB/Student/StudentPrefs TARGET=_top >Preferences</A> | <A HREF=/MATLAB/Email/SendEmail TARGET=EMAILPROF  onClick="openwin('EMAILPROF',600,450)">Send e-mail</A> | <A HREF=/MATLAB/Student/StudentNotes TARGET=NOTES  onClick="openwin('NOTES',600,450)">Messages</A> | <A HREF=/Matlab/Student/StudentManual.html TARGET=MANUAL  onClick="openwin('MANUAL',600,450)">Manual</A> | <A HREF=/MATLAB/Bug_Report TARGET=BUGREPORT  onClick="openwin('BUGREPORT',600,450)">Bugs</A> | <A HREF=/MATLAB/LogOut TARGET=_top >LogOut</A></TD></TR></TABLE><HR WIDTH=100% ALIGN=center>
+<form method="post" action="/MATLAB/Student/CheckGrade?section=42029561&class=62401530&professor=fabregat&topic=06927927" enctype="multipart/form-data">
+<CENTER><p class="Message">Your grade and any comment from the professor appears with each question.</p></CENTER> 
+     
+
+
+<style>
+pre {font-size: 1.2em; background-color: #EEF0F5;}
+ul li {list-style-image: url(http://www.math.csi.cuny.edu/static/images/julia.png);}  
+</style>
+
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Questions to be handed in for project 2: Functions in Julia</h2>
+<div class="p"><!----></div>
+Read more about this <a href="http://mth229.github.io/functions.html">here</a>. We begin by loading the <tt>MTH229</tt> package:
+<pre>
+using&nbsp;MTH229
+
+</pre>
+
+
+<div class="p"><!----></div>
+For the impatient:
+<div class="p"><!----></div>
+A <i>function</i> in mathematics is <a href="http://tinyurl.com/c2rwqyb">defined</a> as &#228; relation between a set of inputs and a set of permissible outputs with the property that each input is related to exactly one output." That is a general definition. Specialized to mathematical functions of one real variable returning a real value, we can define a function in terms of a rule, such as:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> &#8722; 2.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+The <b>domain</b> is the set of all permissible values for <i>x</i>, in this case all <i>x</i>, but this need not be the case either due to the rule not being defined for some <i>x</i> or a more explicit restriction, such as <i>x</i>  &#8805; 0. The <b>range</b> is the set of all possible outputs. Written in set notation, this is {<i>f</i>(<i>x</i>): <i>x</i>  &#8712;  the domain }.
+<div class="p"><!----></div>
+Mathematically, we evaluate or call a function with the notation <i>f</i>(2) or <i>f</i>(3), say.
+<div class="p"><!----></div>
+Mathematically we might refer to the function by its name, <i>f</i>, or its values <i>f</i>(2), ...
+<div class="p"><!----></div>
+In <tt>Julia</tt> basic mathematical  functions are defined and used with the <i>exact</i> same notation. This creates a function <tt>f</tt>:
+<pre>
+f(x)&nbsp;=&nbsp;x^2&nbsp;-&nbsp;2
+
+</pre>
+
+<pre>
+f&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+Unlike an expression, the value <tt>x</tt> in is not needed to be defined until we call the function. As with math, this variable name need not be <tt>x</tt> – it could be <tt>y</tt> or <tt>theta</tt> – though it often is.
+<div class="p"><!----></div>
+We can call <tt>f</tt> for the value of <tt>2</tt> with:
+<pre>
+f(2)
+
+</pre>
+
+<pre>
+2
+</pre>
+
+<div class="p"><!----></div>
+That is, as with typical mathematical notation, the function is "called" by passing a value to it with parentheses.
+<div class="p"><!----></div>
+Within a cell, we can evaluate one or more values by using commas to separate them:
+<pre>
+f(1),&nbsp;f(2),&nbsp;f(3)
+
+</pre>
+
+<pre>
+(-1,2,7)
+</pre>
+
+<div class="p"><!----></div>
+The function name refers to the function object:
+<pre>
+f
+
+</pre>
+
+<pre>
+f&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+Don't worry about the words "generic" and "method", but be aware that because of this you can't rename a function into a variable, without an error. As well, <tt>Julia</tt> isn't even very keen on reusing a function name for another function and may give a warning.
+<div class="p"><!----></div>
+Functions can be more complicated than the &#246;ne-liners" illustrated. In that case, a multiline form is available:
+<pre>
+function&nbsp;fn_name(args...)
+&nbsp;&nbsp;body
+end
+
+</pre>
+
+<div class="p"><!----></div>
+The keyword <tt>function</tt> indicates this is a function whose name is given in the definition. Within the body, the last expression evaluated is the ouput, unless a <tt>return</tt> statement is used.
+
+<div class="p"><!----></div>
+For basic uses of functions – 90However, there are some finer details that do arise from time to time, as explained later on.
+      <h4><a name="tth_sEc1.0.1">
+1.0.1</a>&nbsp;&nbsp;Questions</h4>
+<ul>
+<li> Define the following function:
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+f(x)&nbsp;=&nbsp;exp(-x)&nbsp;*&nbsp;sin(x)
+
+</pre>
+
+<pre>
+f&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+Find the values <i>f</i>(1) and <i>f</i>(<i>e</i>):
+
+<div class="p"><!----></div>
+The value of <i>f</i>(1) is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 1-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-1" value="0.3095598756531122" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 1 -->
+
+
+
+<div class="p"><!----></div>
+The value of <i>f</i>(<i>e</i>) is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 2-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-2" value="0.027106650522289694" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 2 -->
+
+
+
+<ul>
+<li> Define the function
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+f(x)&nbsp;=&nbsp;5/sin(x)&nbsp;+&nbsp;8/cos(x)
+
+</pre>
+
+<pre>
+f&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+Which value is greater? <i>f</i>(&#960;/6) or <i>f</i>(&#960;/3)?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 3-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-3" value="1" checked="checked" />
+
+
+
+
+
+f(&#960;/3)</label> <label><input type="radio" name="Problem-3" value="2" />
+
+
+
+
+
+f(&#960;/6) </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 3 -->
+
+
+
+<ul>
+<li> Write a function that describes a line with slope 1.5 going through   the point (3,1). What is the value of <i>f</i>(10)?
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+The function is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 4-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-4" value="f(x)=1.5x-3.5" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 4 -->
+
+
+
+<div class="p"><!----></div>
+The value of <i>f</i>(10) is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 5-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-5" value="11.5" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 5 -->
+
+
+
+<ul>
+<li> Write a function to convert Celsius to Fahrenheit <i>F</i>=9/5 <i>C</i> + 32. Use it to find the Fahrenheit value when <i>C</i>=56.7 and when   <i>C</i>=&#8722;89.2. (The record high and low temperatures.)
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+The function is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 6-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-6" value="f(x)=(9/5)*x+32" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 6 -->
+
+
+
+<div class="p"><!----></div>
+The value at <i>C</i>=56.7 is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 7-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-7" value="134.06" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 7 -->
+
+
+
+<div class="p"><!----></div>
+The value at <i>C</i>=&#8722;89.2 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 8-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-8" value="-128.56" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 8 -->
+
+
+
+<ul>
+<li> Write a function that computes
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>x</i>) = 10<i>x</i><sup>2</sup> &#8722; 3<i>x</i> &#8722; 7 &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Use it to find the values of <i>f</i>(1), and <i>f</i>(3).
+<div class="p"><!----></div>
+The function is defined by:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 9-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-9" value="f(x)=10x^2-3x-7-1/x" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 9 -->
+
+
+
+<div class="p"><!----></div>
+The value <i>f</i>(1) is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 10-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-10" value="-1.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 10 -->
+
+
+
+<div class="p"><!----></div>
+The value <i>f</i>(3) is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 11-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-11" value="73.66666666666667" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 11 -->
+
+
+
+<ul>
+<li> Write a function that computes:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>t</i>) = <i>A</i>sin(<i>Bt</i> &#8722; <i>C</i>) + <i>D</i></td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+where <i>A</i>=3.1, <i>B</i>=2&#960;/365, <i>C</i>=1.35, and <i>D</i>=12.12.
+<div class="p"><!----></div>
+This function models the amount of daylight in Boston when <i>t</i> records the day of the year. How much daylight is there for <i>t</i>=1, <i>t</i>=365/2, <i>t</i> = 35?
+<div class="p"><!----></div>
+The function is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 12-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-12" value="f(x)=3.1*sin(2*pi/365*x-1.35)+12.12" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 12 -->
+
+
+
+<div class="p"><!----></div>
+The value at <i>t</i>=1 is
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 13-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-13" value="9.107392243291802" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 13 -->
+
+
+
+<div class="p"><!----></div>
+The value at <i>t</i>=365/2 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 14-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-14" value="15.144742409262642" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 14 -->
+
+
+
+<div class="p"><!----></div>
+The value at <i>t</i>=35 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 15-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-15" value="10.012590712584867" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 15 -->
+
+
+
+<ul>
+<li> Person A starts at the origin and moves west at 60 MPH. Person B   starts 200 miles north of the origin and moves south at 70   MPH. Write a function that computes the distance between the two   people as a function of <i>t</i> in minutes.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+(The (<i>x</i>,<i>y</i>) position of person A is (60&#183;<i>t</i>/60), 0) and the (<i>x</i>,<i>y</i>) position of person B is (0, 200 &#8722; 70 &#183;<i>t</i>/60). Use the distance formula to write a function.)
+<div class="p"><!----></div>
+The distance at <i>t</i>=0 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 16-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-16" value="200.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 16 -->
+
+
+
+<div class="p"><!----></div>
+The distance at <i>t</i>=30 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 17-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-17" value="167.70509831248424" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 17 -->
+
+
+
+<div class="p"><!----></div>
+The distance at <i>t</i>=120 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 18-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-18" value="134.16407864998737" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 18 -->
+
+
+
+<ul>
+<li> A specific "Norman" window is a square window with a half circle on top. If the length of the side of the square is <i>x</i>, write a function describing the total area:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 19-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-19" value="f(x)=x^2+(pi*x^2)/4" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 19 -->
+
+
+
+<div class="p"><!----></div>
+For such a Norman window with side <i>x</i>=2, what is the area?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 20-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-20" value="7.141592653589793" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 20 -->
+
+
+
+     <h3><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;Cases</h3>
+<div class="p"><!----></div>
+Some functions are defined in terms of cases. For example, a cell phone plan might depend on the data used through:
+<blockquote>
+<div class="p"><!----></div>
+The amount is 40 dollars for the first 1 Gb  of data, and 10 dollars more for each <i>additional</i> Gb of data.</blockquote>
+<div class="p"><!----></div>
+This function has two cases to consider: one if the data is less than 1 Gb and the other when it is more.
+<div class="p"><!----></div>
+How to write this in <tt>julia</tt>?
+<div class="p"><!----></div>
+The ternary operator <tt>predicate ? expression1 : expression2</tt> has three pieces: a predicate question, such as <tt>x &lt; 10</tt> and two expressions, the first is evaluated if the predicate is <tt>true</tt> and the second if the predicate is <tt>false</tt>. They are useful to write functions that are defined by cases. (They are a light-weight form of the traditional <tt>if-then-else</tt> construct.)
+<div class="p"><!----></div>
+The example above, could then be done with:
+<pre>
+f(d)&nbsp;=&nbsp;d&nbsp;&lt;=&nbsp;1.0&nbsp;?&nbsp;40.00&nbsp;:&nbsp;40.00&nbsp;+&nbsp;10.00&nbsp;*&nbsp;(d&nbsp;-&nbsp;1.0)
+
+</pre>
+
+<pre>
+f&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<ul>
+<li> Use the ternary operator to write a function <i>f</i>(<i>x</i>) which takes a   value of <i>x</i> when <i>x</i> is less than 10 and is otherwise a constant   value of 10.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 21-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-21" value="f(x)= x<10? x: 10" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 21 -->
+
+
+
+<ul>
+<li> A function is given by the rule: it is <i>x</i><sup>2</sup> if <i>x</i>  &gt;  1 and otherwise, <i>x</i>.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+Express this in Julia using the ternary operator.
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 22-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-22" value="f(x)= x>1? x^2: x" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 22 -->
+
+
+
+<ul>
+<li> Write a function to express the following: If a person buys up to   100 units the cost per unit is 5 dollars, for every additional unit   beyond 100 the cost is 4 dollars. The function should return the   total cost to buy <i>x</i> units. (Use the ternary operator with <tt>x &lt;=   100</tt> as the condition.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 23-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-23"  rows="3" cols="60" wrap="virtual">f(x) = x <= 100.00 ? 5.00 * x : 500 + 4.00 * (x - 100)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 23 -->
+
+
+
+     <h3><a name="tth_sEc1.2">
+1.2</a>&nbsp;&nbsp;Composition</h3>
+<div class="p"><!----></div>
+Composition of functions is a useful means to break complicated problems into easier to solve ones. The math notation is typically <i>f</i>(<i>g</i>(<i>x</i>)) and in <tt>julia</tt> this is no different. When thinking about the operation of composition, the notation <i>f</i> &#176;<i>g</i> is used. For that, there isn't any built-in <tt>julia</tt> notation.
+<ul>
+<li> For the function <i>h</i>(<i>x</i>) = ((<i>x</i>+1)/(<i>x</i>&#8722;1))<sup>2/3</sup> write this as the   composition of two functions <i>f</i>(<i>x</i>) and <i>g</i>(<i>x</i>). Use these to evaluate   <i>h</i>(3). Show your work and the answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 24-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-24"  rows="3" cols="60" wrap="virtual">f(x)=x^(2/3)
+g(x)= (x+1)/(x-1)
+f(g(3))=1.5874010519681994
+</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 24 -->
+
+
+
+<ul>
+<li> Write the function <i>h</i>(<i>x</i>) = (cos(12<i>x</i>))<sup>3</sup> as the   composition of two functions <i>f</i>(<i>x</i>) and <i>g</i>(<i>x</i>) and use these to evaluate   <i>h</i>(2). Show your work and the answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 25-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-25"  rows="3" cols="60" wrap="virtual">f(x)= x^3
+g(x)=cos(12x)
+fog(x)=(cos(12*x))^3
+fog(2)= 0.07632160843427711
+</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 25 -->
+
+
+
+     <h3><a name="tth_sEc1.3">
+1.3</a>&nbsp;&nbsp;Parameters: Functions can have keyword arguments.</h3>
+<div class="p"><!----></div>
+In the following, we define a function which evaluates a linear equation. A familiar description of a line has two parameters: the slope <i>m</i> and the <i>y</i> intercept, <i>b</i>: <i>y</i>=<i>mx</i> + <i>b</i>. The main focus is on <i>x</i>, but the values of <i>m</i> and <i>b</i> give each problem a different application. To keep these separate, keyword arguments may be given. In the following, <tt>m</tt> and <tt>b</tt> are passed in via keywords and, as defined, have default values of <tt>m=1</tt> and <tt>b=0</tt>.
+<pre>
+mxplusb(x;&nbsp;m=1,&nbsp;b=0)&nbsp;=&nbsp;m*x&nbsp;+&nbsp;b
+mxplusb(10,&nbsp;m=3,&nbsp;b=4)		#&nbsp;arguments&nbsp;are&nbsp;named
+
+</pre>
+
+<pre>
+34
+</pre>
+
+<div class="p"><!----></div>
+The semicolon separates the two types of arguments.
+<div class="p"><!----></div>
+If no value are passed, the defaults are used:
+<pre>
+mxplusb(10,&nbsp;m=2)&nbsp;&nbsp;&nbsp;#&nbsp;evaluates&nbsp;2&nbsp;*&nbsp;10&nbsp;+&nbsp;0
+
+</pre>
+
+<pre>
+20
+</pre>
+
+<ul>
+<li> The formula for a <a href="http://en.wikipedia.org/wiki/Catenary">catenary</a> has a parameter <i>a</i>:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>y</i> = <i>a</i> cosh(<i>x</i>/<i>a</i>)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+(cosh(<i>x</i>) is the hyperbolic cosine, defined by (1/2) &#183;(<i>e</i><sup><i>x</i></sup> + <i>e</i><sup>&#8722;<i>x</i></sup>) and implemented by <tt>cosh</tt>.) 
+<div class="p"><!----></div>
+Write a function, <tt>c(x;a=1)</tt>, with <tt>a</tt> as a parameter defaulting to 1. Compute <tt>c(1)</tt>, <tt>c(1,a=2)</tt>, and <tt>c(1, a=1/2)</tt>.
+<div class="p"><!----></div>
+The function is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 26-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-26" value="c(x;a=1)= a*cosh(x/a)" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 26 -->
+
+
+
+<div class="p"><!----></div>
+The value of <tt>c(1)</tt>:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 27-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-27" value="1.5430806348152437" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 27 -->
+
+
+
+<div class="p"><!----></div>
+The value of <tt>c(1, a=2)</tt>:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 28-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-28" value="2.2552519304127614" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 28 -->
+
+
+
+<div class="p"><!----></div>
+The value of <tt>c(1, a=1/2)</tt>:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 29-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-29" value="1.8810978455418157" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 29 -->
+
+
+
+     <h3><a name="tth_sEc1.4">
+1.4</a>&nbsp;&nbsp;Functions can be used as arguments to other functions:</h3>
+<div class="p"><!----></div>
+Like many computer languages, <tt>Julia</tt> allows functions to be arguments to functions. In the following, we see we can plot a function by passing in a function object to a <tt>plot</tt> function. Notice, the variable name (<tt>f</tt>) and not the call (<tt>f(x)</tt>) is given to the <tt>plot</tt> command (from the <tt>Plots</tt> package, loaded with <tt>MTH229</tt>):
+<pre>
+f(x)&nbsp;=&nbsp;sin(pi&nbsp;*&nbsp;x)
+plot(f,&nbsp;0,&nbsp;2pi)		&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;pass&nbsp;function&nbsp;for&nbsp;first&nbsp;argument&nbsp;plot(f,a,b)
+
+</pre>
+
+<img alt="Embedded Image" src="data:image/png;base64,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">
+
+
+
+<div class="p"><!----></div>
+Using functions in this way will form a <i>very</i> common pattern. 
+      <h4><a name="tth_sEc1.4.1">
+1.4.1</a>&nbsp;&nbsp;Functions can be anonymous.</h4>
+<div class="p"><!----></div>
+When functions are passed into other functions, it can be convenient to define them without names. The syntax is slightly different, but follows mathematical notation: <tt>x -&#62; expression_in_x</tt>, or more generally <tt>args -&#62; body</tt>. Such functions are called <i>anonymous functions</i>:
+<pre>
+plot(x&nbsp;-&#62;&nbsp;sin(x)*cos(2x),&nbsp;0,&nbsp;2pi)
+
+</pre>
+
+<img alt="Embedded Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQCAIAAAD9V4nPAAAABmJLR0QA/wD/AP+gvaeTAAAgAElEQVR4nO3dd3wVVcLG8Se9F0IKpFJDC72jCCIllKi4wirI6lrWstZdXRsquhbQdS3o+u66rA0rKAgKJPTepIQWSkhCKgkEQkkv9/0jGkJmktwyM2fuzPP98MeF3MwcFTP3/u6Zc1wsFguIiIjMylX0AIiIiETihZCIiEzNXbMz5eWd8fX10ux05BTKyytdXV28vDxFD4R0pLa2rqysIiDAV/RAbFZa41Jd9+tjD1f4ufODJyWVlpZ7enp4eChw2aqsrAoPD3F1/fWtoItmnxH26zft9tsnanMuchbff78mNrb94MG9RA+EdKSo6NzChT//5S+zRA/EBmdcg9b79D3mHj2gOr0CnoVuwUVuwR6Wmoi6ku5VOddUHnYRPUID+OyzZUOG9O7Ro6Pjh9qyZd9//zsnIqJt/W+1e0cYHBz49NN3a3Y6cgonTmQPH973nnumih4I6UhaWsbKlVud5cfF0RK8uhcpuXg0AY8mINAzoeFLuaWeR877ztkTud9/6P9GwVe7H7fGtGXLvltvHTdlynWOH8rLa2HjEMXPCImI7GEBHt+GUcvRsw1O3o7ZAxB4deOP9sP4aKyfAm83jFyGnMuCBkqt4YWQiMger+zB9iKc+D2e648Aj2af5uWGT0djRhcM/xHbCjUcH1mNF0IiIpt9lY7PT2DZhKbvApvz1z5YMAq3pOB/x1QeGdlOu2gdG9tOs3ORs5g48drY2PaiR0H60rZt8L333iJ6FC1ZnYsnd2BDEiJ8bPiuCdHYmISkZNRacF931QZnXL/73dguXWLUOLJ27wjbtAnU7FzkLHr27BQVFS56FKQvfn4+I0b0FT2KZh0+jz9swKKxiA+y+Xu7BWPZBDy3CycuqDAyo+vfv3toaBs1jqzdhbDhjg2iBm5ubq6unFhOV3FxcXF3dxM9Cnn5ZZiyCvNH4Bp7C1f3YLwwAHduQC1vMrSRu7u7Sj8utLs4BQX5a3Yuchbx8XHt2oWKHgXpi6+v96BBery19GIVElfg0QTc2smh4zySAF93vJmq0LBMo1evziEhtr8Nt4J2F8Lz5y9qdi5yFmlpGfn5Z0SPgvSltLR8x44Dokch47ndGBqOJ3o7ehwX4JNRePcg9hcrMSzTSE09dvZsiRpHZholkZhGSUqfaTStBIsyMHeIMkeL8cfbwzBzHSpqlTmgGTCNkjExjZKUPtPoE9vwwgC09VbsgHd0RUIbvPiLYgc0PKZRMiamUZLSYRpdfgrZl3F/D4UP++G1+CodG/IVPqxRMY2SMTGNkpTe0mh1HZ7aiX8Oh4fSP8NCvfHvkbhnEyoZSK3ANErGxDRKUnpLox8cRpdAJKpyJzcmx6JHMJebsQrTKBkT0yhJ6SqNnqvE3P2YN1TFU7w8CHP3o6qu9WeaHNMoGRPTKEnpKo3O3o0ZXdBLlfVMfjUwFD2C8flxFU9hDOqlUe3WGmUaJan4+DjRQyDd0U8aPXIe32fiyDTVT/TSQNy+FnfGK/8xpJH06tVZpSMzjZJITKMkpZ80+sR2hW+ZaM7wCHQJwpfpqp/IqTGNkjExjZKUTtLoriKcvIgHlL5lojkvDsDr+7gAaUuYRsmYmEZJSidp9N1DeCQB7lq9gL+uPSJ98XU67uiqyvFnzHimvLxSlUOLlpQ06u67b3bkCNpdCJlGSSotLSMoKCAyMkz0QEhHSkvLDx48MWxYH4FjyC9DSi4+ulbTk74wAA9vxYwuUONtz7JlGz7++CVvby/lDy3UTz9tPHDA0YlG2l0ImUZJimmUpPSQRj88jDu6IMi63eeVckMUwryxKAO/V2dSSFLSKH9/X1UOLc6pU/lZWY6uzcMb6kkk3lBPUsLTaGUt/ncMD4kYwvMD8Mpe1PGTQm1x1iiJxFmjJCV81ugXJzAkzJ4N6B03IRrBnliSJeDUZsZZoyQS0yhJCU+j8w/h0QRhZ/9bX/xTFzePmAjTKInENEpSYtPo2jzUWjAmStT5MSUOuaU4fF7YAEyIaZREYholKbFp9L1DeLw3BGYKNxf8IR4LjoobgfkwjZJITKMkJTCNZl7CjkLM6CLk5Ffc0w0LT3Dzeu0wjZJITKMkJTCNvncQ9/WAr3a3lcnrEIB+oViaJXgY5sE0SiIxjZKUqDR6qRoL0/FgT+3PLOPe7vgv66hWmEZJJKZRkhKVRj85hnFRiPbT/swybu6Ag+dwkm8fNME0SiIxjZKUqDT636NibqKX5emKWV3NO2Xms8+WFRWd0+x0TKMkEtMoSQlJo/uLcbEK17bT+LQtua87Pj2OapPtXF9eXvnCCx8+//x8lXZcksW1RkkkplGSEpJGF57AH+JF3jUh1S0YnQOxIhs3dRA9FHUUFZ2zWCwREW0BFBYWu7i4hIeHAJgy5To3N02vF9yGiUTiNkwkpX0arbPg25NYPVnLc1qlfsqMShfC9fn4MUuVI0uNicKNkv/XS0ouffDB1++//wyA1177+OGHbw8PD/Hx8Ro6tPfKlVs0GhkAbsNEYnEbJpLSfhumtXmI9EP3YM1OaK3pnfDXHci5jBgV3kcEeaJDgPKHldVGbven+Pi4goKzFy5cdnV1KSo6J/BlMdMoicQ0SlLap9Ev0zFT9E30snzcMb0TPjuO2QOUP/iAUAwQPVPtj3+86dNPf7RYLHfeeaPAYXDWKInEWaMkpXEaLavBslNqbQHouAd6YsExw27MlJh4TUrK9tWrd0yYMELgMDhrlETirFGS0njW6I9ZGB6BCB/NTmibPiFo64V1jm49q1Ourq7DhvWZMGFEk2To5eXp6aldsGQaJZGYRklK4zS6MB136LKLNpjRBd+exFhxG2Kop6Kictu2/YsXv93kz5999h4th8E0SiIxjZKUlmm0qBzbTuPGDtqczU7TO2NJFqoMd0Ph7t2Hb7vt6eeeu9fPT/D7caZREolplKS0TKNfn8TNHeAnepXtlkX7oVsQ1uWJHofS3N3dPvzwuZEjVZgIZCOuNUoiMY2SlJZp9MsTmNlVm1M5ZFonLMoQPQil9e/fPSoqXPQoAKZREotplKQ0S6MnLiCvFNdHanAqR/2+M348ZcA6qhNMoyQS0yhJaZZGPz+BmV3h5gxJor0vegRjTa7ocRgU0yiJxDRKUtqkUQvwlV7vo5dlyDqqE0yjJBLTKElpk0a3nYafO/q2Vfs8irm1E5Zns46qgmmURGIaJSlt0uiiDEzvpPZJlBTpi15tkMI6qgKmURKJaZSktEmjy05hake1T6Iw1lGVcBsmEonbMJGUBml071m4uaBXG1VPorxbO+KF3aiohbddrxM+/PAbT08PpQcl2KZNe+Pi2jt4EG7DRCJxGyaS0mAbpiVZ+J1TddF67XzRLxQpuTJ7+7Vq8eK3k5O3qTAo7RQXl/j5+Xh7X7WlU4cOkaNGDXTwyFxrlERiGiUpDdLokkwsGKXqGdRSX0ftuBAmJl6TmHiNCiPSzuHDJ9u3Dw0JCVL8yEyjJBLTKEmpnUbTL+J8JYboYkkTm03rhNkO1FGn1quXWntlcdYoicRZoySl9qzRHzJxcwc4aYgI80b/tkjOET0OEVJTj509W6LGkTlrlERiGiUptdPokkznmy/amGnnjrq7u6v044JplERiGiUpVdNofhmOX8AoR6cZinRLRzy7C5W18DJZHWUaJWNiGiUpVdPo0ixMjoWHM/epcB8khGC9QfesbwHTKBkT0yhJqZpGnb2L1kuKw/JTogehOfXSKNcaJZG41ihJqZdGS6qw+wzGR6txbE0lxWF5Niyih6GxXr06q3HvBJhGSSymUZJSL40uP4XrI/W+H701egTD2w2pxaLHoS2mUTImplGSUi+NLsnE1A5qHFiAKbGmq6NMo2RMTKMkpVIaLa/B2nxMilX8wGKY8GNCplEyJqZRklIpjSbnYnAYQr0VP7AYI9vh5EXklYoeh4aYRsmYmEZJSqU0uiTLOF0UgLsrxkdjhZmWmGEaJWNiGiUpNdJoTR1WZOOmDsoeVTCz1VGmUTImplGSUiONbi9CrD+i/ZQ9qmCTY7GxAGU1osehFaZRMiamUZJSI42uyDbONJkGQZ4YEIp1pllihmmUjIlplKTUSKMrsjEpRtlD6kKSmW6iYBolY2IaJSnF02huKfLKnHUDwpbd1AHLT5lliRmmUTImplGSUjyN/pyNiTFwM+JftM6BCPLEHnO8mOQ2TGRM3IaJpBRPoytzML2TgsfTl/q5o4PCRI9DfdyGiYyJaZSklE2jlbXYkI8Jzr/QdnPqF+A2A6ZRMiamUZJSNo1uLEBCCNoaZUEZqRERyLmMU5dFj0N9nDVKxsRZoySlbBo16nzRBm4umBiDFSZ4U8hZo2RMTKMkpWwaXZmDiYa+EAKYEoefTXAhZBolY2IaJSkF02jGRVyqRj+jR4dxUdh8GpW1osehMs4aJWPirFGSUjCNLs/G5FgY/qVWGy8ktMHm0xgbJXooauKsUTImplGSUjCNGnJlNVmJMVhl9J0omEbJmJhGSUqpNFpagx1FBn+T1MAMF0KmUTImplGSUiqNrsnFkDAEeDh+JCcwMBRnK5B9GbHG/UHLNErGxDRKUkqlUTPMF23g6oJx0UjOFT0ONTGNkjExjZKUUml0VQ4mm+MDwnoTog1eR5lGyZiYRklKkTR64BxcXdAtWJEROYfEGDyyFdV18DDomw6mUTImplGSUiSNrsjGFJO9ygr1RtcgbC8UPQ7VMI2SMTGNkpQiaTQ510QfEDZIjMFK49ZRrjVKxsS1RknK8TRaWoO9ZzGqvVIjchoTDD1fhmuNkjExjZKU42l0bR6GhsNXuykQejEsAtmXkV8mehzqYBolY2IaJSnH02hyjpE3IGyBmwtuiESKQd8UMo2SMTGNkpTjaTQl16QXQgATYpBs0I8J1UujNrSDnJzTb731aVHRucGDEx57bGaTl2zz53+9efPe+scvvnh/QkKXJt/ONEpSaWkZQUEBkZFhogdCOlJaWn7w4Ilhw/rY9+2Zl3C5Br1ClB2U05gYg6d2oNYCN8OlltTUY1FREaGhyt8TY+2F0GKxPPDAq++//3THjlHffLNq7twFs2f/qfETNm3as2jRP1o4AtMoSTGNkpSDaXRVDhKjjb/jRHPa+yLGH7vPYFi46KEoTXwaPXQofdCgnp07x7i6us6YMWnPnrQmT6iurlm/fveSJeuyswtkj1BeXrloUYr01/LlG9PTswFUVlbxgdkexMfHtWkTKHwYfKCrB25ursHBAXZ/+8rsur4eZ4X/Uwh8kBiDn7NqhQ9D8Qe9enX28/Ox6bt27jwoe93Zv/9YdXUNfuMK62Rm5nXteuX2VA+Ppm8l09OzDx48UV5eMXv2B599tkx6hIyMnEWLVkt/rVq1NT09B0BVVTUfmO1BWlrGqVMFwofBB7p6UFJy8aefNtn37TV12FTg0v5ChvB/CoEPEqOxKsdF+DAUf5Caeqyg4KxN33XgwHHZ605q6lUXQheLxQIr/PDD2qqq6ttuS6z/7fTpT3333VvNPfnGGx9dtuz9Jn/4xBNvvfPOU9aci8zj+PFTgYF+nC9DjZWVVRw5ctK++TKbCvDkDuyaqvignEl1HSK+wNHpCPcRPRRFHT58sn37UEXmy7z77sK77rqpPjzA+neEYWFtCguLG35bV1fXwpO9vDylf8hZoyTFWaMk5cis0ZRcjDfrfNEGHq4Y1R5r80SPQ2nib6gfOLDnunW76t8+ZmcX1F/VSkvLN278BcC2bfvnzftf/TOLi0tqamqlR+CsUZLiDfUk5cgN9cm5mGC+ldWkxkVjteEuhOrdUG/trFFfX+9Zs6YkJT3i4+NdXV0zf/4zALZvT5016/m8vNUjRvRbtWrr1KlPeHi419TUzJv3uPQInDVKUpw1SlJ2zxo9W4H0CwacLWmH8dF4fR8sMNTsWV1sw3TrreNuvXVc4z8ZO3ZYQcHa+sevvPLnlr+daZSkuA0TSdmdRlfnYnSkYTchskmXQHi54ch59GojeijK4TZMZExMoyRldxpNNvGCMlLjo4221hrXGiVjYholKfvSqAVYzZkyjYyLwmpjXQh1kUYdxDRKUkyjJGVfGj10Dn4e6BSoxoic0tgo3L0RlbXwsufzVj1iGiVjYholKfvSaDLfDl4t0BO92mDLadHjUA7TKBkT0yhJ2ZdGTbv1UgvGG+smCvFrjTqOaZSkeEM9SdmRRstrsOuMGbekb5nB5suIv6HecUyjJMU0SlJ2pNGNBejfFoEyS1qZ2pBwnLqEwnLR41AI0ygZE9MoSdmRRrmymiw3F1wfiTVGqaNMo2RMTKMkZUca5YWwOeOijXMTBdMoGRPTKEnZmkbzy1BYjgF8QSVnQjSSc2HVHkO6xzRKxsQ0SlK2ptGUXNwQBf49ktUhAAEeOHRO9DiUwBvqyZh4Qz1J2ZpGV+diXJR6w3F69XNHe4eIHofDeEM9GRPTKEnZlEYtwLp8jOMHhM0zzFprTKNkTEyjJGVTGt1/Fm08Ecve1LwxUdhehPIa0eNwGNMoGRPTKEnZlEZTcvl2sBUBHugbgi2nnf5fFNMoGRPTKEnZlEZX5zn9z3cNGGPDeqZRMiamUZKyPo2W1WBXEUZzZbXWTIhGco7oQTiMaZSMiWmUpKxPo5tPY0Ao/D3UHpHTGxiGvDIUlKG9r+ihOIBplIyJaZSkrE+jXFDGSm4uGOP8a60xjZIxMY2SlPVplDNlrGeAtdaYRsmYmEZJyso0eroMp8swkCurWWd8NF7YDQvgvC88mUbJmJhGScrKNJrMldVsEeePYC8cKBY9DgcwjZIxMY2SlJVplCur2crZ9+nlNkxkTNyGiaSsSaMWYG0+buCF0Bbjopz7bkJuw0TGxDRKUtak0dRiBHuiQ4A2IzKIMVHYWYQyp11rjWmUjIlplKSsSaO8ccIOfu7o3xabT4seh72YRsmYmEZJypo0upo3TtjFqW+iYBolY2IaJalW02hZDXadwSiurGa78dFIdtoLIdMoGRPTKEm1mkY3FWBAKAK4sprtBoaisAz5ZaLHYRemUTImplGSajWNJvMDQnu5umCM0+7TyzRKxsQ0SlKtptHkHEzghdBezrthPdMoGRPTKEm1nEZzS3G2Av3aajkiQ5kQg5Rc1FlEj8N2XGuUjIlrjZJUy2l0VQ7GR3NlNftF+6GtN1KL0d/ZPpTgWqNkTEyjJNVyGk3OxYQYLYdjQE661hrTKBkT0yhJtZBGay1Yn4+xXFnNMeOinXKtNaZRMiamUZJqIY3uPoMYP+feZl0Pro/EjLUorYGfdlcABaiXRrX716BNGt17FkXlOF+J81U4X4nzlYjzxz3d4etU/73NIy0tIygoIDIyTPRAbHamAr+cwS9nsPsMQr1xa0eMjYYnq4cSSkvLDx48MWxYH+mXknN444QC/NwxKAybCjDRqSJzauqxqKiI0NBgxY+s3fVB7TSaWoxHtyGvFF0C0cbr11/tfLGxAK/vx+MJeKgX78DVHadLo6nFeG0fdp9BSSUGhWFwGO6MR24pXt+PWeuRFIdbO2FcFLys2l+d5LWQRlNy8cogjYdjTOOikZLrZBdCptGWFFdg9i9YkomXB+He7nCT/Is6ch6v70Pnr/FQLzyagBAvlQZCNnOuNPq/Y3hmJ14aiNcGo0vQVTt9P5aAvFL8kIm3UnHXBvxnJG7pKGyczq65NFpShUPncW077UdkQBOiMXMd3hkuehy24KxReTV1+OAwei6ChyvSpuP+HjJXQQA922DhGGy/GXmliP8Wy08pPhCyk7PMGi2vwR834O0D2Hgj/twLXa++CtaL8sMjCdiYhJRJeGI7/r4XTninli40N2t0bR5GtuO7bWX0D0VJFbIuiR6HLThrVMbFKoxchqVZWDsZ749Am9be53UOxMfXYdVE3LvJWRdWMB6nSKPHL2DYUlTXYddU9LDi44kBodh5M1bm4LY1Trz3m0DNpVF+QKggF2B8NFbliB6HLbjWaFOlNZi8CoPCsGYyEkJs+MZBYfhhHO5Yjy1OuymXkeh/rdEfMnHtj3iwJxaOsWGKXTtfrJ8CH3eMXIbcUjXHZ0TNpdGUXK6spqTEaKxyqrcEXGv0KpW1mJqCrkF4/xp7vv2advhqDH63Gr84QZMzOJ2n0c2n8fBWrJyEB3ra/L1ebvh0NG7vgmFLsaNIhcEZl2waPVoCAN2UnzBoXuOjsSEfVXWix2E1ptErquswfQ1CvPDxdTKf01jphigsGIWkZBw8p8igyE56TqNnKjBzHT4ZjYEOvGV9sg/+MxI3JeOYKv//GpNsGuWCMopr643uwdjqPG2MafRXdRbcuQGVtfhstPy8GOtNicWH12DCCqTxJ5Q4uk2jdRbMWoc74xVocZNi8Y9huCkFF6qUGJkJyKZR7jihhsQYZ9qnl2kUACzAfZtwphxLJygzc+yWjnhjCCavxKVqBY5GdtBtGn19HyrrMGegMkeb1RXXR+KPGziP1CrSNFpZi62FGMOV1ZSWGIOV2aIHYTWmUQD4+14cu4ClE+Ct3PzpO+NxfSRe2K3YAckm+kyj6/Px0RF8NcbR6tDYeyNQWI7X9ip2QAOTptEtp9E7BMGeokZkWIPDkF+GPCeZz8U0it1n8K/DWDRW+cXx3hyKbzM4cUYMHabR02WYtR6fX6/wgpaerlg8Dv9OwwrneQEuijSNckt6lbi5YGyU09RRs6fRshrMWo/516iy2G5bb8wbgvs3o5bdSnN6S6O1Fsxch/u64wYVKlx7X3w3FndvRDp3JGuRNI2uyEYiL4TqSIxxmrsJzZ5Gn96JwWGY1knB4VxlVjyCPfH+IbWOT83RWxp9MxUuLnhhgFrHHx6Blwdhagou82Pp5jVJo6cu40wFBjnfwuzOYUI01uahxhluojB1Gk3JxbJTmG/XLYNWcgE+GonX9yHnsopnISldpdEzFfjnAXx8nbq7n9/fA4PD8NcdKp7C2TVJoyuykRjDLenV0s4XcQHY6Qy3upo3jZZU4U+b8Mlo1T8njw/CIwl4YIu6Z6EmdJVG/74XM7ugY4DqJ3p3OFZkO9P9WxprkkZXZGMS7yBUU2K0c3xMaN40+sBm/K4TxkQqPhwZz/RD1iUsydLiXFRPP2k06xK+Ssez/bU4V6An/jEMD2xBtTP0KO01TqOVtdh8GuP4AaGaJjjJx4QmTaNfpuNAMV7VavsxT1f830g8vIU3PmtHP2l09m48moAIH41O9/vOiPPHOwc1Op1zaZxG1+ejTwi3TlPXNRFIv4iictHjaI0Z02hhOf6yHQvHwEfDzeVHtsOEGLy+T7szmpxO0uiBc1ibj7/01vSk74/AW6lOtg+ONhqn0ZU5mBQrdjjG5+6K6yORovs6asY0Ons37orHAM3fLbwyCB8fxdkKrc9rTjpJo8/sxOz+8PfQ9KSdAvFEbzzIj6UlGqfRFdm8EGphgjN8TGi6NJpajJ+y8ZwmH9g0Ee2HmzvgX0cEnNqE9JBGN5/G0RLc10PAqf/WF/ml+D5TwKn1rCGNHitBRS1627LPGtlnUiySc1Cn73upTZdGn9iOOQMRJGhFpaf74sPDKOWWquoTnkYtwNM78ffB8NTuf4Ur3F3xwbV4fBsu8mPpRhrS6IocTIq1f5MZsl60H8J9sOes6HG0yFxp9IdMFJXjnm6qDqcl3YIxsh3+e1TYAMxDeBpdmoXSatzeWdgARrbD+Gi88IuwAehQQxrljRNamhSLn06JHkSLTJRGK2vxt514bwTcRbxCb/BMP7x9gLPbVSc2jdZa8PwuzB0q+GbtN4fi25PcGvOK+jR6uRo7i1RZ645kJcVhub4XwjVRGn3/EBJCxP/tHxSGbkH4Ml3wMAxPbBpdnIG23pgo+j1HW2882x/PcwuU39Sn0bV5GBah9QwmMxsRgZzLyNXxThRmSaNF5XgrFW8O1WA4rXumH+bt1/unx85ObBr94DCe0PaWieY82BOHz2NDvuhx6EN9Gv2ZXVRbbi5IjNF1HTVLGp29G3fGI16V9742uyEKwZ74Ucd/LQxAYBpNLUbmJSTFCTl5U56umDMQz+zizr3Ab2k0OZc3TmhN53XUFGk0tRjLszFbtYX/7fBUX7zBm+vVJDCNfnAYD/WEh9CPohub2QWVtbp+Pa6Z0tLyL9Yfd3fVy2ti80iMxuYCXNLr1iimSKNP7cRLA4TdMiHr5g64XI11DFaqEZVGz1fi+0zc2137MzfL1QV/H4zndnNfTLi4uOwsDZrCt4OaC/TE0HCszRM9jmYYP41uOY2Mi/r6wQTA1QVP9cXc/aLHYVyi0uiCY0iKQ7hWK4taaUosQr3x5QnR4xDN19c7tS6CXVSIKXFYrtcsYfw0Ons3Xhwg+JYJWXd0xdES7C8WPQ6DEpJG6yz46Age6qnxaa3y2mC8tAeVtaLHIVTe+Yp9Z2pHtRc9DlNKisXP2TqdJGjwNLo2D6fLMbOrZmOxgYcr/tSdN9erRUgaXZmDtl4YGq7xaa0yIgJ9QvCRuVf4W53vNsC/zNut9WeS4joFItQbu8WvhC/D4Gn05T14aQDc9LqS0l3d8M1JlHPFNRUISaPzD+GRBI3PaYN5QzEv1dSLrq0o8PhjP/X3R6ZmJOm1jho5jSbnorgSvxe3xlWrov0wOAxLs0SPw4i0T6MnLmB/MaZ10vKctukejMRovH2g9WcaUmUtUnIs7c+a+02xULq9EBo5jb70C+YMFLzGVavu7ob/HRM9CCPSPo3+6wju7gadZ7c5g/CvIzhXKXocIqzJQ58QS6iXLj+kMoeh4Sgow6nLoschYdg0+lM2Smvwu46ajcJON3XAgXPIsG1rYWqdxmn0cjU+P477dTlNprE4f9zcAe8fEj0OEZZk4XedXRt2qCftubnodAFuY6ZRC/DKHrwySO9vBwF4uuL2zvjc9PPaFadxGv3iBK6PRJwNO2MKM3sAPjyMEpN9Usm43vEAACAASURBVFhnwc/ZGBtW0bBDPQmhzzpqzDT6YxZqLbi5g2ZDcMjd3fHJMZ3OKnZeGqfRj47gISd5pxHnjymxmG+yN4VbC9HeFx0D0LBDPQkxPhrbi3S3xIwB06gFmLMHLw9yml03+4Qg3Ee/ay44KS3T6P5iXKzC9ZHanE0Bswfgg8O6+2GkqiWZmNrhyg71JEqAB4aFIyVX9DiuZsA0+n0GvNzgXKso3dMNCzhlRlFaptEvT2BmV6d54QWgcyDGR+ODw6LHoaEfT+HmDld2qCeBdFhHjZZGLcBr+/CCntbXtsZtXZCSa9K5fCrRLI3WWfDNSczsosGplPR8f7x3EJfN8aYwtRguQO+QKzvUk0BJcViZo6+Vb42WRn/OhgWY7FRvBwEEe2JSDJeCVJJmaXRDAcJ80LONBqdSUvdgXB9ploVmlmRhagcATKO6EOePOH9sKhA9jkaMlkbn7sfs/s4UqRrczeXWFKVZGv3yhPO9Haz3wgC8cxBlJljYaEkmpnYEwDSqF9M6YVGG6EE0Yqg0ujYPxRW4Rff3Dsq6PhKlNdh7VvQ4jEKbNFpRi6VZul69qAU92+Cadvh3muhxqCzrEgrLMSwcANOoXkzrhMUZqKkTPY7fGCqNvrYPz/V3gnsHZbkAd8ZzlRnFaJNGf85G/1BE+6l9HrXMGYh/pBp8tdvvM3Fzh19/LDCN6kSHAHQIwObTosfxG+Ok0e2FOHUZtzvna/N6d8Xj25Oo1s2rJKemTRr98gRmOGcXrderDYaEG3zG8o9ZuKnDr4+ZRvVDV3XUOGn01X14uq8e9x20Xow/ugdjDW8oVIIGafR8JdblO2uKb/DiALyZiiqDvvwqKsfBcxjz2y2eTKP6oas6apA0ur8Y+87iD/GanVMtunqV5NQ0SKOLMzEuGsGeqp5Edf1D0SPYsDOWfzyFibHw+u3axzSqH7qqo7pIozk5px99dO5tt/3t7bc/r6lpuoV2y18FcP78xVf34m999b7wvzWmdcKyU4Z9ea4lDdKo884XbeK5/nh9n77u61LK0qyrllpkGtUV/bzuF59GLRbLAw+8+thjM7/6am779qFz5y6w/qv1SnzCtpzGn3ooMGjh2vuiRzCXW1OA2mk05zIOncfEGPXOoJ1R7dHOF99nih6H0kqqsPU0EqOv/AnTqK7c2gk/ZOriFZj4NHroUPqgQT07d45xdXWdMWPSnj1p1n+13snw/o/1hq+7AoPWA/28SnJqaqfRr0/ilg5Xmpuzq39TqIOfSEpanIGxUQhs1K6ZRnWlYwBi9XFnvfg0mpmZ17VrXMNvPTzcrf9qvdztm54bPsLFpW+TX/HxSR9++A2As2dLnOjBpY0/Lj+FgiK9jMdJH6SlZRw6dFK9U7y/o2RmV138kyry4OSyb9xc8PWhUp2MR5EHn6XVhKRvafwn2dmnn3zybeED44OGB9M64YsjlcKHkZp67PjxUzZ91xNPvCW96Li49H3imyNF50vRwGKd779f8/XXKxt+O23ak9Z/td7jj7/Z3MHr6uqc8cG1P1pWZIsfhlM/OHYsq6DgjEqnOFhsifnSUluni39SpR4sOmkZvlT8MJR6kHPZ0vYzS3n1VV8qLS3fteugTkbIB3V1dRkXLe2+sFTXCh7GoUPpxcUl9n17Y5eqLP7/V5575lLDn1j7jjAsrE1hYXHDb+vq6qz/aj3ZHerrubi4OOOD+joqfBhO/aA+jap0iq9P4vbOv96jLfyfVKkHt3TE+UpsKNDLeBx88HU6pnaAt/tVX/L19R48OEEnI+QDFxeXjgGI8cPm04KHUZ9G7fv2xv6dhq51hX7uVz5ksPZCOHBgz3XrdlksFgDZ2QX1V7XS0vKNG39p7qtNSHeod3acO+o4VWeN/pCJ6c68dIMsVxc80w9v7Bc9DoUsPIE7ujb9Q84a1aFbdTArQpFZoxW1eOcgxlZftee1tXNXfH29Z82akpT0iI+Pd3V1zfz5zwDYvj111qzn8/JWy361CekO9c6ufu7oujwkGmJSohDqzRpNK8GlagzQaNNfTc3ogjl7sL0QwyNED8UxR86juBIj2zX9cxfOGtWf6Z0wdCneHyFyORRFZo0uOIpBYYg8c77xH7rUv43TwJw5H82Z86A259LM+4eQWowFo0SPgyTe2I+CMrw/QvQ41PGvI0jJxdLxosfhmGd3oc6CeUNFj4OsM3gJ3hyK6yNbf6ZuVdch/lt8NQY7v1541103BQcH1P+5sB3qjeF3HbHsFNcdtZ96abTJPdoGc3c37C7CgXOix+EAC/B1OmZKuiiYRvVqeid8e1LkABxPowtPoGuQTEoRs0O9YUT5oTvvrHeASmk0rxQZF3GdpLkZhrcb/tIHr+0VPQ4HbDkNPw/0CZH5EtOoPs3ogkUZIrfGdDCN1lp+3QpXSswO9UbCO+sdodIN9UuzMDnWudd2b9WDPbHpNA457ZvCL0/gD3JvB8Eb6vUqyg/DIvCDuLWNHLyh/ruTaOuN69rLfIlp1FHTOuFHzh21l0ppdEkWpnZQ/Kj64uuOxxOcdfpodR2+z2x2q2SmUd26u5vI3VgdSaMW4I39eHGA/FeZRh3VMHeU7KBGGi2pwi9nMC669Wc6u4cTsC4fx1RZhVhdK7LRsw06BMh/lWlUt5LicOQ8Tgp6U+NIGv0xC+6umNDMDH+mUQX8riMWG24pZG2okUZ/OoXrI42zqm0L/NzxSC+8tk/0OGz3VXpLW4IwjeqWpytmdsWnx8Wc3ZE0+vo+vDAAzV1FmUYVcGMcfs5GncHWQtaEGmnUDF20wcO9sCoH6U71/9bFKiTn4tZOzT6BaVTP7u6GT4+J2YzC7jS6MgfltbgprtknMI0qoFMgQrywW91t9YxJ8TRaXoN1eZjS/N94gwn0xJ974Q2nelP4QxZGRyLEq9knMI3qWa82iPLD6lwBp7Y7jc7ZgzkD0cK3Mo0qIykOP2WLHoQTUjyNpuRiYFhLP2SN57HeWHYKmZdEj8NqnxzDrGbmi9ZjGtW5u7thgYgpM/al0WWnUFWLWzq29BymUWUkxWJZluhBOCHF06ipumi9YE882BNznWT66OHzSL+AG1t8y840qnO3dcaaXJyp0Pq8dqRRC/D3vZgzsNlPB+sxjSpjeAQKy5HlPK/KdULZNFprwYrsVn7IGtLjvfF9Jk5dFj0OK7x3EA/2hEeLPwyYRnUu0BM3dsCXJ7Q+rx1p9IdMWCy4sUMrT2MaVYarCxJj8DPrqI2UTaObCtAhADFG/osmL8QLf+qOebp/U1hShcWZuK9HK09jGtW/e0TcUGhrGq2z4OU9eGVQK28HwTSqoCmxWH5K9CCcjbJp1Njri7bsr32wKAMZ+v6f7JNjmBSDCJ9WnsY0qn8j26OiVusZgram0cWZ8HPHpNjWn8k0qpjEGGwvwqVq0eNwKgqmUQuwNKuVj8QNrK03HkvAC7+IHkfzLMD/HcEjCa0/k2lU/1yAu+K1flNoUxqttWDOL3h5kFVPZhpVjL8HhoWLmVXsvBRMo/vOwscd3YMVOZhTeqIPNuRjf7HocTRjZTYCPDA0vPVnMo06hbu6ab0Gt01p9JuTaOuN8datMMU0qqSkONZR2yiYRn/OxmQrGoiB+bnj+QF4bpfocTTjwyN42Iq3g2AadRKRvhgRgYUaTpmxPo3WWvDKHrxi3dtBMI0q68Y4rMgRs+aCk1Iwja7IxqRmFhI0j/u648QFrMsXPQ6Jkxfxyxnc1swq200wjTqLJ/vgzVTtfuJZn0a/OIFwHxv2EGYaVVKsPyJ8sLNI9Dich1Jp9GwFjpZgpNwGK6bi4YpXBuH5XdDbi7EPD+PubvC27urGNOosrmuPdr5YrNU+dFam0YpavLIHbwyx4chMowpLisNPrKNWUyqNrszBmCh4Gj86tO62Lqiqw9Is0eNopKwGX5zA/a3dNdGAadSJPN0Xb+zX6IWXlWn0nwcwMAzX2rIvN9OowpLisIwXQqsplUZX5mCi6btoPRfg9SF4dhdqdLNH5ufHMbJds5suSTGNOpEpcaizIEWTSYLWpNHCcrxz0La3g2AaVdyQMBRXOtluAAIpkkZrLVidywvhFROiEe2HzwTtlSP10RH82ZbSyTTqRFyAv/XVaIU/a9Loc7twb3d0CbTtyEyjCnN1waQYrOASM9ZRJI3uKES0H6L8FBmRQbw2GC/vRbmGU9ubsy4f1XUYE2XDtzCNOpfbOuPUJWwvVP1ErabRfWexMgfP9rP5yEyjypvCmyispkgaXZFj1eIRpjI0HEPC8M5BwcOwALN3Y3bzG6LKYhp1Lu6ueFKTN4WtptEntuOVQQj0tPnITKPKGx+NnUUoqRI9DmegSBrljROy/jkc7x7ESaEhZmkWSqutvWuiAdOo07m7G345g0Pn1D1Ly2l0UQZKqvDHbvYcmWlUeX7uuKYd1uWJHoczcDyN5pUipxTDIpQakXHE+uPJvnh4q7AB1Frw/C7MG9rShqiymEadjrcbHk7Am6nqnqWFNFpZi2d24Z3hcLMrMDGNqiIxBqtyRA/CGTieRlfmYEK0nX/7De8vvXG6DN9pdZtXE58eQ5gPEm1/s8406oz+3BMrc9Tdiq6FNPrPg+jX1oY76JtgGlVFYjRW8kJoBcfT6Ipszhdtlrsr/j0ST2wTEOoravHKXsy1cRZ7PaZRZxToiXu6459qfizdXBotKsc/D9j5l60e06gqugXD0w2Hz4seh+45mEar6rA+3573HOYxJBxT4vC85guQfnAYg8Iw3K5kzTTqpB5PwFfpKn4s3VwafXgr7u2OrjbsVNgU06haJkSzjrbOwTS6uQDdgxHqreCIDOjNofjxlBaz2xuUVOGtVLw62M5vZxp1Uu188XRfPLRFrePLptEvTuDwebw4wKEjM42qhR8TWsPBNMobJ6wR5Il5Q/HAZlRrtdbMvP24KQ497N0Si2nUeT3RG2cq8FW6KgeXptG8Ujy5A5+Nho+7Q0dmGlXLDVHYWYTL3Ke3RQ6m0RXZvBBaZWYXhPvgg8NanKugDB8fxQsOvEJnGnVe9R9LP7UD5yuVP3iTNFpnwR/W44neGBTm6JGZRtXi544h4dhQIHoc+uZIGs24iJIqDFBmW1/j+9e1eH0fjl9Q/UQv78E93RDjQABiGnVqg8MwtSOe3qn8kZuk0fcPobIOT/VV4MhMoypiHW2VI2l0RQ4mxti2ZImZdQ3CG0MwNQWX1KwUG/Kx/BSesX2Nq8aYRp3d64OxIgdbTit82MZp9Mh5vL4Pn49W5tYpplEVJXK+TGscSaMrc7igjG3u7Y6R7XDnerU2zSksxx3r8elotPFy6DhMo84u0BPvDscDm1Gl6MfSDWm0ug6z1uP1Iehk4+LazWEaVVFCCCprcUL9GOW87E6jFbXYchrjohUfkcG9fw0Ky/H6PuWPXGfBzHW4p5sC/1GYRg3g1k7oEIB/KLrWTEMafXkPovxwb3fFjsw0qi7W0ZbZnUY3F6BPCIJsX13X5DxdsXgcPjqi/IIPr+yFxYIXBypwKKZRY/jwWryj6Gq39Wl0SRY+OYaPr1PssGAaVVtiDFZpsmWlk7I7jabkYgLfDtqlvS++G4s/blBy18w1efjvUXx1gzIf2DCNGkOcP57rj9vW4qJCCxulph5bdOTyg5vxUyIifJQ5Zj2mUXWNi8KW07rYFk6f7E6jq3IxgR8Q2mtEBOYMRNIqZX5CFZbjrg34dLRiP5uYRg3jid4Y1R6JK5W5kexQuf9Du/0WjUN/peeKM42qK9ATfUOwWenZU4ZhXxrNL8PpMgzkjRMOeKAnrmmHmetQ5tirtFoLbluLB3pgrC1b77aMadRI3hqG7sG4ZTUqax06zq4i/OVE1LfjXEa2U2hkjTCNqo4fE7bAvjSakosbomze3Iea+Ne1CPXGtcuQc9nOI9TU4eGt8HTFc/2VHBjTqJG4AB9fhxAvTF9j/9pGB87hxmS8EJvbx7OlHertxjSqOl4IW2BfGk3O4QeECvB0xSejcUcXDFuKbbavRJpfhjE/4dQlfHODwi9KmEYNxs0FX1wPALPWo9b2e3eOlWDiCnxwDa4PrXRw17bmMI2qrn8ozlXilL0vuo3NjjRaZ8GaPIznhVAhf+mDBaMwNQWfHrfhu9blY/APGB+NnxIdvWtQimnUeDxc8d1YnKvEfZtQZ/W1sKYO7x3CyGV4Ywhu7dTKDvWOYBpVnQswgW8Km2FHGt1zFu18EeWn0ojMKDEGG5Pw+j48uaP1F+wW4LV9uGMdPr8esweoEqiZRg3Jyw1LxyPnMvp+j6/TW/+btiYPfb/Hz9nYkIQ/xAMt7lDvIKZRLXBLpubYkUZ544Qaugdj5804ch6xX+KRrdhYIPOyvawGW09jyiqsysEvt+AG5WbHNME0alS+7lg9Gf8Yho+OoMd3+OSY/KeGGRdxSwru34zXBiNlEnq2+fXPW9ih3kGO7V1hC9OmUQDjo/HnLaiug4d5XwzIi4+Ps/VbknMw27G9x0hWGy+smIjjF7AoA49vw+ly3NIBE2ORcxm/nMHuM8i4iIQQTIrFc/3grubfZKZRY5sQjQnR2FSA1/bh5T24vycAnK+88iv1HP7SG1/dAO+rXw716tVZpSFpdyE0bRoFEOqNLkHYUQQ1Jv46tbS0jKCggMhIa7dRuViF1HO4rr2qgzK1+CA83x/P90f6RSzOwDsH0CkQQ8Lx517oHaLRK7nS0vKDB08MG9ZHi5ORINe1x3XtsasIX5yAvwdCvdE1CG080cYLvUMQLndPamrqsaioiNBQeze6bJ52F0Izp1EA46OxOpcXwqZsTaNr8zEiounrRFJDl0A808/RfSTswzRqHkPCMSTc2ierl0Y5a1Qj46KQwrXWJGydNZqSy/mixsc0SrI4a9TpjWiHoyU4p8KuzU7N1lmjnCljBpw1SrI4a9TpebpiZDusyxM9Dp2xKY2euICq2itTyMiomEZJFmeNGsG4aKzOw62dRI9DT2yaNZrMhbbNgWmUZKk3a5RpVDvjo5HMuwmvZlMa5cpqJsE0SrKYRo2gezAswHFuWN+I9Wm0qg6bT6t4EzfpB9MoyWIaNYjx0UjJRbwq856ckvVpdNtp9AhGiNLLWpIOMY2SLKZRg6i/EFID69NoMm+cMA2mUZLFNGoQY6OwucD+TbmMx/o0yjsIzYNplGQxjRpEGy/EB2N7IRcJ+5WVafRsBTIu2rACBTk1plGSxTRqHOOjsZp3E/7GyjS6OhejI7lkuVkwjZIsplHj4FprjVmZRlfnYRy7qGkwjZIsplHjGBGB4yU4W4FQb9FD0QEr0+iaPDzXX+2xkF4wjZIsplHjcHfFde2xLl/0OPTBmjR65DzcXNAlUJsRkXhMoySLadRQxkVjNesoAOvSKBfaNhumUZLFNGoo46Mxb7/oQeiDNWl0dR7u7qbBWEgvmEZJFtOoocQHwcMVR1V5i+9kWk2jVXXYehrXR2o2IhKPaZRkMY0azTguMQPAijTKldVMiGmUZHGHeqPhTRT1Wt2hngvKmBDTKMniDvVGMzYam0+jslb0OERrNY2m5PIOQtNhGiVZTKNGE+yJnsHYXih6HKK1nEaLK3DyIoZyZTWTYRolWZw1akD1a62NNvc0kJZnjdb/++HKambDNEqyOGvUgDhfBq2l0dXsoqbENEqymEYNaFg4Tl7EmQrR4xCq5TS6Og/juCW9+TCNkizOGjUgd1eMao+15t6JooVZo/Urq3VVZY4Y6RrTKMnirFFj4lprLaTR1XlcWc2kmEZJFtOoMY2PRrK5L4QtpFF+QGhaTKMki2nUmLoEwssNR86LHoc4zaXRqjps4cpqZsU0SrKYRg1rvLnnjjaXRrmympkxjZIsplHDGheF1SaeL9NcGk3OxYQY7YdDusA0SrKYRg1rTBS2mHittebSaDKXGDUxplGSxTRqWMGeSGiDrWZda002jZ6pwKlLGBImZEQkHtMoyWIaNTIz30Qhm0aTc3B9JNz598WsmEZJFtOokZl5voxsGk3hB4TmxjRKsphGjWxoOE5dRlG56HGIIE2jFmBNHsZyZTUTYxolWUyjRubmglHtscaUc0elaTS1GIGe6BggakQkHtMoyWIaNTjTblgvTaPJOVxZzeyYRkmWemnUhv0Ic3JOv/XWp0VF5wYPTnjssZlNXrLNn//15s176x+/+OL9CQldmnw702gLEmPw8l5YAFVe7ehYWlpGUFBAZOSVGaLJuXiyj8ARkXilpeUHD54YNox/D+gqqanHoqIiQkODFT+ytRdCi8XywAOvvv/+0x07Rn3zzaq5cxfMnv2nxk/YtGnPokX/aOEITKMt6BAAf3ccOofeIaKHoq0mabS0Br+cwSiurGZuTKMkS3waPXQofdCgnp07x7i6us6YMWnPnrQmT6iurlm/fveSJeuyswtkj8A02rIJMViVI3oQmmuSRjfkY0g4/GzoFGRATKMkS/ys0czMvK5d4xp+6+HR9GdVenr2wYMnyssrZs/+4LPPlkmPsG3b/unTn5L++vOfX09J2Q7g0qVSMz+IOHt0VY74YWj8IC0t4/jxUw1/8vG20+OjdTEwPhD4oLDw7HvvfSV8GHygtwepqceysvJt+q6PP/5B9rrz2WfLysqu7IruNmfOHDRy6FD6ww+/sWjR6sa/evTodObMeYvF0vDJ36JFq6dNG9/4Gx966PdDh/bu3bvr1Kk3vPjih7ffPhFXS07efsstN/Tq1bnJr+7dO3bpEtO2bTAAFxcX0z5o61b56rGgh3vBy00X49Hmgaurq7e3p7+/b/2fvHDQd/ZAtwgf8QPjA4EPqqtrzp0r6dGjk07Gwwc6eQAgIMDX19fb+u+qq6uLjo6QXncuXixNTLzGz88HAAAXi8UCK2zevHfv3rTHHptZ/9tbb/3r4sVvN/fkadOelH5eOGfOR3PmPGjNuUxr3M94JAE3xrX+TEPKuoThPyL/DtPNGCIijb377sK77ropOPjX+7SsTaMDB/Zct25X/VUzO7ug/gO/0tLyjRt/AbBt2/558/5X/8zi4pKaGpk1pDlrtFWJMUg22ceEjW+or19om1dB4g31JEu9G+qtnZbg6+s9a9aUpKRHfHy8q6tr5s9/BsD27amzZj2fl7d6xIh+q1ZtnTr1CQ8P95qamnnzHpcegbNGW5UYg6RVogehrcazRlNycUtHscMhXXDhrFGSo96sUWvTqOOYRq0R9xVSJqFbsOhxaK7WgogvcGQawn1ED4WIjM7ONOo4plFrTIjGKjMtMdOQRncUIs6fV0ECmEapGVxr1CwSTXY3YUMaTc7lymr0K6ZRkiX+hnrH8YZ6a4yNwrZClNeIHodWGm6oT+GW9PQb3lBPssTfUO84plFrBHqiX1tsLBA9Dq3Up9EzFThWghHtRI+G9IFplGQxjZqIqepofRpdmY0bouDJvyAEgGmUmqFeGtVuVUemUSslRuP2daIHoZX4+DgAKw9jIrekp98wjZKsXr06q3RkplHd6ReKi1XIMMe/rbS0jJy8M6vzkMgLIf2GaZRkMY2aiAswPhrJ5riJws3Nbe8Fzzh/RPmJHgrpBtMoyeKsUXMxz8eE8fFxOy4HTYoVPQ7SE6ZRksVZo+YyIRobClAps2Kr0aSlZfx4smYSuyg1wjRKsphGzaWNF3oGY2uh6HGo70yN5+lKtyHhosdBesI0SrKYRk3HJHX0qHv05DgXN245QY0wjZIsplHTmRiDlSa4EH57pHSYP/9i0FWYRkkW06jpDArD2QpkXhI9DjVV1mL3BZ8xEdWiB0L6wjRKsphGTcfVBRNjsPyU6HGoaWMB+oS69ohtK3ogpC9MoySLadSMkuIMfiFcmYPB3ucadqgnqsc0SrKYRs1ofDR2FqGkSvQ4VPNzNkaHVqrUOsh5MY2SLKZRM/Jzx7XtsNqgS8xkXMTlatw4oH39NkxEDZhGSRbTqEkZuI4uz8bkWBz9bYd6ogZMoySLadSkbozDihzU1IkehwpWZGNS7JUd6okaMI2SLG7DZFJRfoj1x/YijDTWprWlNdhRhMXjEOARJ3ospDtMoySL2zCZV1KsAevo2jwMCUOAx6871IseDukL0yjJYho1L0N+TPjTKdTvOME0SlJMoySLadS8BobhUjWOX0C8KrOlBKizYHk2nu0P/LZDPVFjTKMki2nUvFyAybH4yUBvCrcWor0vOgYAYBolGUyjJItp1NSS4rA8W/QglLMkE1M7/PqYaZSkmEZJFm+oN7UbIrH3LIorRI9DIUuzrlwI4+PjeEM9NcE0SrJ4Q72p+bhjVHskG2KJmX1n4eaChJBff8s0SlJMoySLadTsDDN3dEkWpna88lumUZJiGiVZTKNmNyUWq3JQ7fxLzCxp1EXBNEpymEZJFtOo2bX3RdcgbDktehyOSb+IsxUYGn7lT5hGSYpplGQxjRJujMOPWaIH4ZilWbgpDo3bBtMoSTGNkiymUcK0TvguA3UW0eNwwA+ZuKXjVX/CNEpSTKMki2mU0C0YYd7YVih6HPYqLMfREoyOvOoPmUZJimmUZDGNEgBM64RFGaIHYa8lmZgUA8+r/xYwjZIU0yjJYholAJjeGYsyUOucdbTJjRP1mEZJimmUZDGNEgDEByHCB1udcO7ohSrsLEJiTNM/ZxolKaZRksU0Sr9y0jr6UzZGR8JPstkJ0yhJMY2SLKZR+tVtnbE40/nqaOOFthtjGiUpplGSxTRKv+oUiEhfJ7uzvrwGa/IwOVbmS0yjJMU0SrKYRumKaZ3w3UnRg7DFyhwMDkOot8yXmEZJimmUZDGN0hW/74wfspypjn5xAnd0lf8S0yhJMY2SLKZRuqJjAKL9sKlA9Disc74S6/Nxcwf5rzKNkhTTKMliGqWrONHc0W9PYlIsgjzlv8o0SlJMoySLaZSuMr0TFmegxhl2ZVqYjju6NPtVplGSYholWUyj6k0QywAACPdJREFUdJUOAegYiI26r6OnLiP9AsZFN/sEplGSYholWUyj1JRT1NHPj+P3neHR/H95plGSYholWUyj1NTvO+GHTL3X0a/SMbP5LgqmUZLDNEqymEapqRh/dAlCSq7ocTRv9xnUWTAkvKXnMI2SFNMoyWIaJRl3d8OCY6IH0byFzd8+2IBplKSYRkkW0yjJuK0zNuSjoEz0OOTU1OG7jFa6KJhGSQ7TKMliGiUZ/h64pSM+Py56HHKSc9E5EJ0CW3ka0yhJMY2SLKZRkndvd/znKHS42tqXLd4+2IBplKSYRkkW0yjJGxqOQA9szBc9jquV1mBVDqZ1av2ZTKMkxTRKsphGqVl/7Ib/HhU9iKstzsCo9mgrt91EE0yjJMU0SrKYRqlZs7piRQ7OVYoeRyMtbDfRBNMoSTGNkiymUWpWGy9MjsXCE6LH8ZujJThyHlPktuGVYholKaZRksU0Si25R0919L1DuL8HvKx7Qc80SlJMoySLaZRaMjoS1XXYWSR6HEBJFb47ift7WPt8plGSYholWeqlUXc1DiqLaVRVd8Xjv0cxtMX1zDTwnzQkxaGdr7XPj4+PU3M45JSYRklWr16dVToy06hB3NUN32fiUrXIMdRa8H9H8LAtP8GYRkmKaZRkMY1SKyJ8cH0kvj0pcgxLMhHjj0FhNnwL0yhJMY2SLM4apdbd2x3/ThM5gPcP4dEE276Fs0ZJimmUZHHWKLUuMQaVtVgtaGOmvWeRfRk32fiRH9MoSTGNkiymUWqdC/BsP8zZI+bs7x7EIwlwt/E/MtMoSTGNkiymUbLK9M4orsR6zZceLSrHz9n4Yzebv5FplKSYRkkW0yhZxc0Fz/XD3/dqfd5/HcHtXRDiZfM3Mo2SFNMoyWIaJWvN7Iq8Umwq0O6MlbX4T5ptd000YBolKaZRksU0StZyc8Ez2r4p/Pok+rVF92B7vpdplKSYRkkW0yjZ4I6uOHkR2wu1OFd5Deb8guf62/ntTKMkxTRKsphGyQYertq9KXzrAIZH4Np2dn470yhJMY2SLKZRss0fuyGtBLtUXoY7rxTzD+GNIfYfgWmUpJhGSRbTKNnGwxVP9sGr+9Q9yzO78GBPdAiw/whMoyTFNEqymEbJZvd2x76z+EW1q8yes9iQj7/1deggTKMkxTRKsphGyWZebni+Px7fjlqL8ge3AI9sxauD4e/h0HGYRkmKaZRkMY2SPe7vCX93vJWq/JG/SkdlLWZ1dfQ4TKMkxTRKsphGyR4uwIJReO8QUouVPGx5DZ7fhXdHwPFKwTRKUkyjJItplOwU5Yd5QzBjHSpqFTvmvFSMaIeR9t4y0RjTKEkxjZIsplGy3x/i0T0YL/2izNFOXMCHhzHXgVsmGmMaJSmmUZLFNEoO+fdILDyBLacdPc6ZCkxehblDEKvQ23umUZJiGiVZTKPkkFBv/G807tyAS9X2H6S8Bjcn4/bOuKe7YgNjGiUpplGSxTRKjpoQjTGR+Ot2O7+9zoI71iMuAHMGKTkqplGSYholWUZIo7m5miwCTc3753Csz8ere2HHjYV/2Y4LVfh0NJQNE2vW7Dxw4LiihySnd/ZsybffJoseBenOTz9tOnkyW40ja3chLC6+oNm5SFaAB7bdjNV5+P0alNXY8I3/PIA1eVg8Dp5K/31JTT2Wl6fyiqjkbMrKypOTt4keBenOjh0Hzpxx8neEpAdh3kiZBF93jFyGnMtWfcu3J/HuIayciGBPlQdHRCQCL4Sm4+WGT0djRhcM/xHbWszVO4sweRWe2onlExDDqU5EZFDuogdAYvy1D3q1wS0peLofxkahW/BV2XN7IV7ZiyPn8Uw//DAOXpzKTkTGpd2F8OLFy//5z2LNTkfW+DMCvtze6y0EnoVfW5RF4mI7XMxCSCECEnH0aWS5ban7bIuKAzh6NLO6uqa2Vrllb8j5FRScLSm5yB8X1ER2dsGqVVvz8xWYVbB9e+qMGZMafutisaiwN4GcvLwzvr5e2pyLbFVdh9KaKxNC/d0t7ppU8/LySldXFy8vfvxIV9TW1pWVVQQE+IoeCOlLaWm5p6eHh4cC798qK6vCw0MalnnR7kJIRESkQ5wsQ0REpsYLIRERmRovhEREZGq8EBIRkanxQkhERKbGCyEREZkaL4RERGRqvBASEZGp8UJIRESmxgshERGZGi+ERERkalrsPpGTc/qttz4tKjo3eHDCY4/NdHfnpj4EAJmZee+992VhYfHAgT0ffXSGp6eH6BGRXpw7d+H779fcd9/vRA+E9OLs2ZK5cxfk5haOGTPkT3+6VdmDq/6O0GKxPPDAq489NvOrr+a2bx86d+4Ctc9IzuKRR9545JHbFy58Iyam3bx5n4geDunIY4/NW7Nmh+hRkI7cf/8rf/hD0pdfzs3LK9qx44CyB1f9QnjoUPqgQT07d45xdXWdMWPSnj1pap+RnMVNN13fuXOMm5vruHHDMjPzRA+H9GLBgiWDByeIHgXpSGZmXmxs+z594t3cXF9++aFhw/ooe3zV02hmZl7XrnENv1VkKykyhobw9dJLH9133y1iB0M6cfJkzqpVW7/77q2tW/eJHgvpxdGjmenp2VOmPOzt7dWmTeAHHzyr7Camqr8jrKmp5YeC1IIFC5ZERIQMH95X9EBIvJqa2scff3P+/GdcXFxafzaZRllZhb+/7/Ll8xcvfvvGG0d/+OG3yh5f9QthWFibwsLiht/W1dWpfUZyIt9/v2bPniPPP3+f6IGQLqSlZfj4eD/66Lzp05/avv3A9OlPHTqULnpQJF5AgN/IkQPqXx6NHz98z54jyh5f9QvhwIE9163bZbFYAGRnFwQF+at9RnIWP/ywdtWqrR988Cxf/lO93r27fvfdW/W/hg/v8913byUkdBE9KBJv2LA+KSnb668jKSnb+/XrpuzxVf/EztfXe9asKUlJj/j4eFdX18yf/4zaZySnkJp6bNas5yZOvPa2254G4O/v+7//vSx6UKQjfn6+oodAehEY6HfHHZOTkh7x8vIMDw95992/KXt8l/prLBERkTlxZRkiIjK1/wcoWF8nZM9fygAAAABJRU5ErkJggg==">
+
+
+
+      <h4><a name="tth_sEc1.4.2">
+1.4.2</a>&nbsp;&nbsp;Returning a function</h4>
+<div class="p"><!----></div>
+Familiar mathematical functions take a real number as input and return a real number. However, the concept of a function is more general. With <tt>julia</tt> it is useful to write functions that take functions as arguments, and return a derived function as an output. For the return value an <i>anonymous function</i> is typically used. 
+<ul>
+<li> Describe what the following function does to the argument <i>f</i>, when   <i>f</i> is a function. (There isn't anything to do but recognize that   <tt>n</tt> takes a function as input and returns a function as output, this   question is how is <tt>n(f)</tt> related to <tt>f</tt>.)
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+n(f::Function)&nbsp;=&nbsp;x&nbsp;-&#62;&nbsp;-f(x)
+
+</pre>
+
+<pre>
+n&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 30-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-30"  rows="3" cols="60" wrap="virtual">returns a function with opposite y values. for instance if f(2)=.3 g(x)=-.3
+where g(x)=-f(x) </textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 30 -->
+
+
+
+<ul>
+<li> This function takes a function and two points and returns a new function that evaluates the secant line:
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+function&nbsp;secant(f,&nbsp;a,&nbsp;b)
+&nbsp;&nbsp;m&nbsp;=&nbsp;(f(b)&nbsp;-&nbsp;f(a))&nbsp;/&nbsp;(b&nbsp;-&nbsp;a)
+&nbsp;&nbsp;x&nbsp;-&#62;&nbsp;f(a)&nbsp;+&nbsp;m&nbsp;*&nbsp;(x&nbsp;-&nbsp;a)
+end
+
+</pre>
+
+<pre>
+secant&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+Let <i>f</i>(<i>x</i>) = sin(<i>x</i>). Let <i>a</i>=&#960;/6 and <i>b</i>=&#960;/3. Show that the secant line at &#960;/4 is less than the function value at &#960;/4 by computing both:
+<div class="p"><!----></div>
+The function at &#960;/4 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 31-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-31" value="0.7071067811865475" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 31 -->
+
+
+
+<div class="p"><!----></div>
+The secant line's value at &#960;/4 is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 32-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-32" value="0.6830127018922193" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 32 -->
+
+
+
+
+     <h3><a name="tth_sEc1.5">
+1.5</a>&nbsp;&nbsp;Some other facts about functions</h3>
+      <h4><a name="tth_sEc1.5.1">
+1.5.1</a>&nbsp;&nbsp;Julia functions can have more than one variable</h4>
+<div class="p"><!----></div>
+For example, this function is used to compute the area of a rectangle:
+<pre>
+rectarea(b,&nbsp;h)&nbsp;=&nbsp;b&nbsp;*&nbsp;h		#&nbsp;area&nbsp;of&nbsp;rectangle&nbsp;is&nbsp;base&nbsp;times&nbsp;height
+
+</pre>
+
+<pre>
+rectarea&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+The <tt>log</tt> function is an example, where <tt>log(b,x)</tt> will find the log base <i>b</i> of <i>x</i>, while <tt>log(x)</tt> uses the default base <tt>e</tt>, or the natural log.
+      <h4><a name="tth_sEc1.5.2">
+1.5.2</a>&nbsp;&nbsp;Julia functions with different signatures, can have the same name!</h4>
+<div class="p"><!----></div>
+This finds the area of a square using the previously defined rectangle function:
+<pre>
+rectarea(b)&nbsp;=&nbsp;rectarea(b,b)	#&nbsp;area&nbsp;of&nbsp;square&nbsp;using&nbsp;area&nbsp;of&nbsp;rectangle
+
+</pre>
+
+<pre>
+rectarea&nbsp;(generic&nbsp;function&nbsp;with&nbsp;2&nbsp;methods)
+</pre>
+
+<div class="p"><!----></div>
+Which function is used depends on the arguments that are passed when calling the function. Hence, <tt>log(x)</tt> will find log base <i>e</i> of <i>x</i> whereas <tt>log(10, x)</tt> can be used to find log base 10.
+<div><input type="hidden" name=".cgifields" value="Problem-3"  /></div></form>
+</body>
+</html>
+<CENTER><HR WIDTH="75%"></CENTER>
+<CENTER><ADDRESS>Powered by <A HREF=/MATLAB/About>e-Pupils</A>. Copyright &copy; 1998-2001. All rights reserved.</ADDRESS></CENTER>
+</body>
+</html>

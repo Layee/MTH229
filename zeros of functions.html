@@ -1,0 +1,979 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Display grades</title>
+<link rel="stylesheet" type="text/css" href="/Matlab/style-sheets/default/style_sheet.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body link="#003366" alink="#003366" vlink="#003366" bgcolor="white" text="black" font="sans-serif,arial,helvetica">
+<FONT FACE=sans-serif,arial,helvetica COLOR="black">
+<SCRIPT>
+function openwin(target,width,height) {
+  var defopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1";
+  var wh = defopts + ",width="+ width + ", height=" + height;
+  var remotewindow = window.open("",target,defopts);
+  if (!remotewindow.opener) remotewindow.opener=self;
+  return remotewindow;
+}
+</SCRIPT>
+
+<TABLE width=100% BORDER=0  CELLPADDING=5 CELLSPACING=0><TR><TD align=left valign=center><FONT SIZE=+2><STRONG>Your Graded Project</STRONG></FONT></TD><TD align=RIGHT valign=center><img src=/Matlab/icons/common/user.gif border=0><strong>MatthewA Delaguila</strong></td></TR><TR><TD COLSPAN=2 VALIGN=bottom ALIGN=CENTER><A HREF=http://www.math.csi.cuny.edu/ TARGET=_top >Main</A> | <A HREF=ClassOutline TARGET=_top >New Project</A> | <A HREF=/MATLAB/Student/StudentPrefs TARGET=_top >Preferences</A> | <A HREF=/MATLAB/Email/SendEmail TARGET=EMAILPROF  onClick="openwin('EMAILPROF',600,450)">Send e-mail</A> | <A HREF=/MATLAB/Student/StudentNotes TARGET=NOTES  onClick="openwin('NOTES',600,450)">Messages</A> | <A HREF=/Matlab/Student/StudentManual.html TARGET=MANUAL  onClick="openwin('MANUAL',600,450)">Manual</A> | <A HREF=/MATLAB/Bug_Report TARGET=BUGREPORT  onClick="openwin('BUGREPORT',600,450)">Bugs</A> | <A HREF=/MATLAB/LogOut TARGET=_top >LogOut</A></TD></TR></TABLE><HR WIDTH=100% ALIGN=center>
+<form method="post" action="/MATLAB/Student/CheckGrade?section=42029561&class=62401530&professor=fabregat&topic=25965520" enctype="multipart/form-data">
+<CENTER><p class="Message">Your grade and any comment from the professor appears with each question.</p></CENTER> 
+     
+
+
+<style>
+pre {font-size: 1.2em; background-color: #EEF0F5;}
+ul li {list-style-image: url(http://www.math.csi.cuny.edu/static/images/julia.png);}  
+</style>
+
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Questions to be handed in for project 4:</h2>
+<div class="p"><!----></div>
+Read about this topic here: <a href="http://mth229.github.io/zeros.html">Solving for zeros with julia</a>.
+<div class="p"><!----></div>
+For the impatient, these questions are related to the zeros of a real-valued function. That is, a value <i>x</i> with <i>f</i>(<i>x</i>)=0. The <tt>Roots</tt> package of <tt>Julia</tt> will provide some features. This is loaded when <tt>MTH229</tt> is:
+<pre>
+using&nbsp;MTH229
+
+</pre>
+
+<div class="p"><!----></div>
+Graphically, a zero of the function <i>f</i>(<i>x</i>) occurs where the graph crosses the <i>x</i>-axis. Without much work, a zero can be <i>estimated</i> to a few decimal points. For example, we can zoom in on the zero of <i>f</i>(<i>x</i>) = <i>x</i><sup>5</sup> + <i>x</i> &#8722; 1 by graphing over [0,1]:
+<pre>
+f(x)&nbsp;=&nbsp;x^5&nbsp;+&nbsp;x&nbsp;-&nbsp;1
+plot(f,&nbsp;0,&nbsp;1)
+plot!(zero,&nbsp;0,&nbsp;1)
+
+</pre>
+
+<img alt="Embedded Image" src="data:image/png;base64,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">
+
+
+
+<div class="p"><!----></div>
+We can see the answer is near 0.7. We could re-plot to get closer, but if more accurate answers are needed, numeric methods, such as what are discussed here, are preferred.
+
+<div class="p"><!----></div>
+The notes talk about a special case - zeros of a polynomial function. Due to the special nature of polynomials, there are many facts known about the zeros. A typical example is the quadratic equation which finds both answers to any quadratic polynomial. These facts can be exploited to find roots. The <tt>Roots</tt> package provides the <tt>roots</tt> function to <i>numerically</i> find all the zeros of a polynomial function (real and complex) and the <tt>fzeros</tt> function to find just the real roots. (The heavy lifting here is done by the <tt>Polynomials</tt> package.)
+<pre>
+f(x)&nbsp;=&nbsp;x^5&nbsp;+&nbsp;x&nbsp;-&nbsp;1
+roots(f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;all&nbsp;roots
+
+</pre>
+
+<pre>
+5-element&nbsp;Array{Complex{Float64},1}:
+&nbsp;-0.877439+0.744862im
+&nbsp;-0.877439-0.744862im
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5+0.866025im
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5-0.866025im
+&nbsp;&nbsp;0.754878+0.0im&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</pre>
+
+<pre>
+fzeros(f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;real&nbsp;roots&nbsp;only
+
+</pre>
+
+<pre>
+1-element&nbsp;Array{Real,1}:
+&nbsp;0.754878
+</pre>
+
+<div class="p"><!----></div>
+(Notice that in both cases the argument is a function. This is a recurring pattern in these projects: A function is operated on by some action which is encapsulated in some function call like <tt>roots</tt>.)
+      <h4><a name="tth_sEc1.0.1">
+1.0.1</a>&nbsp;&nbsp;Bisection method</h4>
+<div class="p"><!----></div>
+For the general case, non-polynomial functions,  the notes mention the bisection method for zero-finding. This is based on the <i>intermediate value theorem</i> which guarantees a zero for a continuous function <i>f</i>(<i>x</i>) over any interval [<i>a</i>,<i>b</i>] <i>when</i> <i>f</i>(<i>a</i>) and <i>f</i>(<i>b</i>) have <i>different</i> signs. Such an interval is called a <b>bracket</b> or bracketing interval.
+<div class="p"><!----></div>
+The algorithm finds a zero by successive division of the interval. Either the midpoint is a zero, or one of the two sub intervals must be a bracket.
+<div class="p"><!----></div>
+The <tt>bisection_viz</tt> function in the <tt>MTH229</tt> package provides an illustration.
+<div class="p"><!----></div>
+The notes define a <tt>bisection</tt> method and a stripped down version is given below.  More conveniently the <tt>Roots</tt> package implements this in its <tt>fzero</tt> function when it is called through <tt>fzero(f, a, b)</tt>. For example,
+<pre>
+f(x)&nbsp;=&nbsp;x^2&nbsp;-&nbsp;2
+fzero(f,&nbsp;1,2)			#&nbsp;find&nbsp;sqrt(2)
+
+</pre>
+
+<pre>
+1.4142135623730951
+</pre>
+
+<div class="p"><!----></div>
+As mentioned, for polynomial functions the <tt>fzeros</tt> function finds the real roots. In general, the <tt>fzeros</tt> function will try to locate real roots for any function but it needs to have an interval in which to search. For example this call will attempt to find all zeros within [&#8722;5,5] of <i>f</i>(<i>x</i>):
+<pre>
+f(x)&nbsp;=&nbsp;x^2&nbsp;-&nbsp;2
+fzeros(f,&nbsp;-5,&nbsp;5)
+
+</pre>
+
+<pre>
+2-element&nbsp;Array{Real,1}:
+&nbsp;-1.41421
+&nbsp;&nbsp;1.41421
+</pre>
+
+<div class="p"><!----></div>
+[This function will have issues with non-simple roots and with roots that are very close together, so should be used with care.]
+<div class="p"><!----></div>
+This summary of functions in the <tt>Roots</tt> package might help:
+<ul>
+<li> The call <tt>roots(f)</tt> finds all roots of a polynomial function, even complex ones.
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> The call <tt>fzeros(f)</tt> finds all <i>real</i> roots of polynomial function.
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> The call <tt>fzero(f, a, b)</tt> finds a root of a function between a <b>bracketing</b> interval, <tt>[a,b]</tt>, using the bisection method. This <i>method</i> is guaranteed to work if a bracket is given.
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> The call <tt>fzeros(f, a, b)</tt> function <i>attempts</i> to find all roots of a function in an interval <tt>[a,b]</tt>. This may miss values; answers should be checked graphically.
+<div class="p"><!----></div>
+</li>
+</ul>
+     <h3><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;Questions to answer</h3>
+      <h4><a name="tth_sEc1.1.1">
+1.1.1</a>&nbsp;&nbsp;Polynomial functions</h4>
+<ul>
+<li> Find a zero of the function <i>f</i>(<i>x</i>) = 212 &#8722; 0.65<i>x</i>.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 1-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="partial credit" src="/Matlab/icons/default/checkgrade-partial.gif" border="0" /><BR> You received <BR>70% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-1" value="332.3076923076923" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 1 -->
+
+
+
+<ul>
+<li> The parabola <i>f</i>(<i>x</i>) = &#8722;16<i>x</i><sup>2</sup> + 200<i>x</i> has one zero at <i>x</i>=0. Graphically find the other one. What is the value
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 2-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-2" value="12.5" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 2 -->
+
+
+
+<ul>
+<li> Use the <a href="http://en.wikipedia.org/wiki/Quadratic_equation">quadratic equation</a> to find   the roots of <i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> + <i>x</i> &#8722; 1. Show your work.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 3-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-3"  rows="3" cols="60" wrap="virtual">a = 1; b = 1; c = -1
+discr = b^2 - 4*a*c
+(-b + sqrt(discr))/(2a), (-b - sqrt(discr))/(2a) 
+(0.6180339887498949,-1.618033988749895)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 3 -->
+
+
+
+<ul>
+<li> Use the <tt>roots</tt> function to find the zeros of <i>p</i>(<i>x</i>)=<i>x</i><sup>3</sup> &#8722;4<i>x</i><sup>2</sup> &#8722;7<i>x</i> + 10. What are they?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 4-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-4" value="1" checked="checked" />
+
+
+
+
+
+<tt>-2.0,&nbsp;1.0,&nbsp;5.0</tt></label><br /> <label><input type="radio" name="Problem-4" value="2" />
+
+
+
+
+
+<tt>-0.788376+1.08241im,&nbsp;&nbsp;-0.788376-1.08241im,&nbsp;5.57675+0.0im</tt></label><br /> <label><input type="radio" name="Problem-4" value="3" />
+
+
+
+
+
+<tt>-2.33333,&nbsp;0.0</tt> </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 4 -->
+
+
+
+<ul>
+<li> Use the <tt>fzeros</tt> function to find the <i>real</i> zeros of <i>p</i>(<i>x</i>) = <i>x</i><sup>5</sup> &#8722;5<i>x</i><sup>4</sup> &#8722;2<i>x</i><sup>3</sup> + 13<i>x</i><sup>2</sup> &#8722;17<i>x</i> + 10. (The <tt>roots</tt> function returns all 5 zeros guaranteed by the Fundamental Theorem of Algebra, not all of them are real.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 5-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-5" value="1" />
+
+
+
+
+
+<tt>-2.000&nbsp;+&nbsp;0.0im,&nbsp;0.500&nbsp;+&nbsp;0.866im,&nbsp;0.500&nbsp;-&nbsp;0.866im,&nbsp;1.0&nbsp;+&nbsp;0.0im,&nbsp;5.0&nbsp;+&nbsp;0.0im</tt></label><br /> <label><input type="radio" name="Problem-5" value="2" checked="checked" />
+
+
+
+
+
+<tt>-2.0,&nbsp;1.0,&nbsp;5.0</tt></label><br /> <label><input type="radio" name="Problem-5" value="3" />
+
+
+
+
+
+<tt>0.0,&nbsp;2.0,&nbsp;6.0</tt></label><br /> <label><input type="radio" name="Problem-5" value="4" />
+
+
+
+
+
+<tt>1.0,&nbsp;5.0</tt> </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 5 -->
+
+
+
+<ul>
+<li> Descarte's <a href="http://en.wikipedia.org/wiki/Descartes_rule_of_signs">rule of signs</a> allows   one to estimate the number of <i>positive</i> real roots of a real-valued   polynomial simply by counting plus and minus signs. Write your   polynomial with highest powers first and then count the number of   changes of sign of the coefficients. The number of positive real   roots is this number or this number minus 2<i>k</i> for some <i>k</i>.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+Apply this rule to the polynomial <i>x</i><sup>5</sup> &#8722; 4<i>x</i><sup>4</sup> + 5<i>x</i><sup>3</sup> &#8722; 16<i>x</i><sup>2</sup> &#8722; 3. What is the maximal possible number of positive real roots? What is   the exact number?
+<div class="p"><!----></div>
+The maximal possible number of real roots is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 6-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-6" value="5" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 6 -->
+
+
+
+<div class="p"><!----></div>
+The actual number of positive real roots is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 7-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-7" value="2" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 7 -->
+
+
+
+      <h4><a name="tth_sEc1.1.2">
+1.1.2</a>&nbsp;&nbsp;Other types of functions</h4>
+<ul>
+<li> Graph the function <i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> &#8722; 2<sup><i>x</i></sup>. Try to graphically estimate   all the zeros. Answers to one decimal point.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 8-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-8" value="1" />
+
+
+
+
+
+<tt>-1.414,&nbsp;1.414</tt></label><br /> <label><input type="radio" name="Problem-8" value="2" />
+
+
+
+
+
+<tt>0.0,&nbsp;2.0</tt></label><br /> <label><input type="radio" name="Problem-8" value="3" />
+
+
+
+
+
+<tt>-1.0,&nbsp;1.0</tt></label><br /> <label><input type="radio" name="Problem-8" value="4" checked="checked" />
+
+
+
+
+
+<tt>2.0,&nbsp;4.0</tt> </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 8 -->
+
+
+
+<ul>
+<li> Graphically find the point(s) of intersection of the graphs of <i>f</i>(<i>x</i>) = 2.5&#8722; 2<i>e</i><sup>&#8722;<i>x</i></sup> and <i>g</i>(<i>x</i>) = 1 + <i>x</i><sup>2</sup>.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 9-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-9"  rows="3" cols="60" wrap="virtual">[.40,.70]</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 9 -->
+
+
+
+
+<ul>
+<li> The <tt>MTH229</tt> package provides a <tt>bisection</tt> method, here is an abbreviated version:
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+function&nbsp;bisection(f,&nbsp;a,&nbsp;b)
+&nbsp;&nbsp;@assert&nbsp;f(a)&nbsp;*&nbsp;f(b)&nbsp;&lt;&nbsp;0	#&nbsp;an&nbsp;error&nbsp;if&nbsp;[a,b]&nbsp;is&nbsp;not&nbsp;a&nbsp;bracket
+
+&nbsp;&nbsp;mid&nbsp;=&nbsp;a&nbsp;+&nbsp;(b&nbsp;-&nbsp;a)&nbsp;/&nbsp;2
+
+&nbsp;&nbsp;while&nbsp;a&nbsp;&lt;&nbsp;mid&nbsp;&lt;&nbsp;b
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;f(mid)&nbsp;==&nbsp;0.0&nbsp;break&nbsp;end
+&nbsp;&nbsp;&nbsp;&nbsp;f(a)&nbsp;*&nbsp;f(mid)&nbsp;&lt;&nbsp;0&nbsp;?&nbsp;(b&nbsp;=&nbsp;mid)&nbsp;:&nbsp;(a&nbsp;=&nbsp;mid)&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;mid&nbsp;=&nbsp;a&nbsp;+&nbsp;(b&nbsp;-&nbsp;a)&nbsp;/&nbsp;2
+&nbsp;&nbsp;end
+&nbsp;&nbsp;mid
+end
+
+</pre>
+
+<pre>
+bisection&nbsp;(generic&nbsp;function&nbsp;with&nbsp;1&nbsp;method)
+</pre>
+
+<div class="p"><!----></div>
+The function above <b>starts</b> with two values, <i>a</i> and <i>b</i> with the property that <i>f</i>(<i>a</i>) and <i>f</i>(<i>b</i>) have different signs, hence if <i>f</i>(<i>x</i>) is continuous, it must cross zero between <i>a</i> and <i>b</i>. The algorithm simply bisects this interval by finding <tt>mid</tt>. It then selects either <tt>[a,mid]</tt> or <tt>[mid,b]</tt> to be the new interval where a zero is guaranteed. It <b>stops</b> if the interval is too small to subdivide. This is an impossibility mathematically, but is the case with floating point numbers.
+<div class="p"><!----></div>
+The <tt>bisection</tt> function is used to find a zero, when [<i>a</i>,<i>b</i>] brackets a zero for <i>f</i>. It is called like <tt>bisection(f, a,b)</tt>, for  suitable <tt>f</tt>, <tt>a</tt>, and <tt>b</tt>.
+<ul>
+<li> Let <i>f</i>(<i>x</i>) = sin(<i>x</i>). The interval [3,4] is a bracketing   interval. What would the interval be after one step of the bisection   method?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 10-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-10" value="1" checked="checked" />
+
+
+
+
+
+[3,3 1/2]</label> <label><input type="radio" name="Problem-10" value="2" />
+
+
+
+
+
+[3 1/2, 4] </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 10 -->
+
+
+
+<div class="p"><!----></div>
+What would the interval be after <i>three</i> steps:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 11-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-11" value="1" />
+
+
+
+
+
+[3, 3 1/8]</label><br /> <label><input type="radio" name="Problem-11" value="2" checked="checked" />
+
+
+
+
+
+[3 1/8, 3 1/4]</label><br /> <label><input type="radio" name="Problem-11" value="3" />
+
+
+
+
+
+[3 1/4, 3 3/8]</label><br /> <label><input type="radio" name="Problem-11" value="4" />
+
+
+
+
+
+[3 3/8, 3 1/2]</label><br /> <label><input type="radio" name="Problem-11" value="5" />
+
+
+
+
+
+[3 1/2, 3 5/8]</label><br /> <label><input type="radio" name="Problem-11" value="6" />
+
+
+
+
+
+[3 5/8, 3 3/4]</label><br /> <label><input type="radio" name="Problem-11" value="7" />
+
+
+
+
+
+[3 3/4, 3 7/8]</label><br /> <label><input type="radio" name="Problem-11" value="8" />
+
+
+
+
+
+[3 7/8], 4] </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 11 -->
+
+
+
+<ul>
+<li> Use the <tt>bisection</tt> function to find a zero of <i>f</i>(<i>x</i>) = sin(<i>x</i>) on [3,4]. Show your commands and both the zero (<tt>x</tt>) and its value <tt>f(x)</tt>.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 12-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-12"  rows="3" cols="60" wrap="virtual">f(x)=sin(x)
+bisection(f, 3,4)
+3.141592653589793</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 12 -->
+
+
+
+<ul>
+<li> Let <i>f</i>(<i>x</i>) = exp(<i>x</i>) &#8722; <i>x</i><sup>5</sup>. In the long run the exponential   dominates the polynomial and this function grows unbounded. By   graphing over the interval [0,15] you can see that the largest   zero is less than 15. Find a bracket and then use <tt>bisection</tt> to   identify the value of the largest zero. Show your commands.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 13-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-13" value="12.713206788867632" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 13 -->
+
+
+
+<ul>
+<li> Find the intersection point of 4 &#8722; <i>e</i><sup><i>x</i>/10</sup> = <i>e</i><sup><i>x</i>/15</sup> by first   graphing to see approximately where the answer is. From the graph,   identify a bracket and then use <tt>bisection</tt> to numerically estimate the   intersection point.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 14-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-14" value="3.17805" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 14 -->
+
+
+
+<ul>
+<li> The bisection algorithm can't distinguish a vertical asymptote from   a zero! What is the output of trying the bisection algorithm on   <i>f</i>(<i>x</i>) = 1/<i>x</i> over the bracketing interval [&#8722;1,1]?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 15-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-15" value="-5.0e-324" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 15 -->
+
+
+
+<div class="p"><!----></div>
+What is the reason for this:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 16-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-16" value="1" checked="checked" />
+
+
+
+
+
+The intermediate value theorem does not apply as f(x) is not continuous on [&#8722;1,1]</label><br /> <label><input type="radio" name="Problem-16" value="2" />
+
+
+
+
+
+The intermediate value theorem does not apply as [&#8722;1,1] is not a bracketing interval</label><br /> <label><input type="radio" name="Problem-16" value="3" />
+
+
+
+
+
+This is not a good example, as the bisection does find an answer of zero </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 16 -->
+
+
+
+<ul>
+<li> The <tt>Roots</tt> package has a built-in function <tt>fzero</tt> that does   different things, with one of them being a (faster) replacement for   the <tt>bisection</tt> function. That is, if <tt>f</tt> is a continuous function   and <tt>[a,b]</tt> a bracketing interval, then <tt>fzero(f, a, b)</tt> will do the   bisection method until a zero is found or the interval can no longer   be subdivided.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+Show that <tt>fzero(f,a,b)</tt> works by finding a zero of the function <tt>f(x) = (1 + (1 - n)^2)*x - (1 - n*x)^2</tt> when <i>n</i>=8. Use [0, 0.5] as a bracketing interval. What is the value?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 17-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-17" value="0.015380918950558698" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 17 -->
+
+
+
+<ul>
+<li> The <tt>airy</tt> function is a special function of historical   importance. (It is a built-in function.) Find its largest <i>negative</i> zero by first plotting, then   finding a bracketing interval and finally using <tt>fzero</tt> to get a   numeric value.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+From your graph, what is a suitable <i>bracketing</i> interval?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 18-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-18" value="1" />
+
+
+
+
+
+[&#8722;10, 10]</label> <label><input type="radio" name="Problem-18" value="2" />
+
+
+
+
+
+[0, 2&#960;]</label> <label><input type="radio" name="Problem-18" value="3" checked="checked" />
+
+
+
+
+
+[&#8722;3,0]</label> <label><input type="radio" name="Problem-18" value="4" />
+
+
+
+
+
+[&#8722;5, 5]</label> <label><input type="radio" name="Problem-18" value="5" />
+
+
+
+
+
+[&#8722;2, 2] </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 18 -->
+
+
+
+<div class="p"><!----></div>
+The value of the largest <i>negative</i> zero is:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 19-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-19" value="-2.338107410459764" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 19 -->
+
+
+
+<ul>
+<li> Suppose a crisis manager models the number of cases of water left   after <i>x</i> days by <i>f</i>(<i>x</i>) = 550,000 &#183;(1 &#8722; 0.25)<sup><i>x</i></sup>. When does the   supply of water dip below 100,000? Find a bracket and then use a   numeric method to get a precise answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 20-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-20"  rows="3" cols="60" wrap="virtual">f(x) = 550000 *(1 - 0.25)^x
+plot(f,5.9,6)
+x=5.925805796</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 20 -->
+
+
+
+
+<div class="p"><!----></div>
+The <tt>fzeros(f, a, b)</tt> function basically splits the interval [<i>a</i>,<i>b</i>] into lots of subintervals and then applies the bisection method to each to find the zeros of <tt>f</tt> over the interval. (Note the plural, this is not just <tt>fzero</tt>.) The algorithm is a bit crude, so may miss some zeros. Plotting is suggested to confirm the answers.
+<ul>
+<li> Use <tt>fzeros</tt> to find all the zeros of cos(<i>x</i>) &#8722; 1/2 over [0, 4&#960;].
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 21-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-21" value="1" />
+
+
+
+
+
+<tt>-1.0472,&nbsp;1.0472</tt></label><br /> <label><input type="radio" name="Problem-21" value="2" />
+
+
+
+
+
+<tt>1.5708,&nbsp;4.71239,&nbsp;7.85398,&nbsp;10.9956</tt></label><br /> <label><input type="radio" name="Problem-21" value="3" />
+
+
+
+
+
+<tt>1.0472,&nbsp;5.23599</tt></label><br /> <label><input type="radio" name="Problem-21" value="4" checked="checked" />
+
+
+
+
+
+<tt>1.0472,&nbsp;5.23599,&nbsp;7.33038,&nbsp;11.5192</tt> </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 21 -->
+
+
+
+<ul>
+<li> Use <tt>fzeros</tt> to find all the roots of <i>e</i><sup><i>x</i></sup> = <i>x</i><sup>6</sup> over [&#8722;20,20].
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 22-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-22" value="1" />
+
+
+
+
+
+<tt>1.29586,&nbsp;12.7132</tt></label><br /> <label><input type="radio" name="Problem-22" value="2" />
+
+
+
+
+
+<tt>-0.8155,&nbsp;1.42961,&nbsp;8.6131</tt></label><br /> <label><input type="radio" name="Problem-22" value="3" checked="checked" />
+
+
+
+
+
+<tt>-0.86565,&nbsp;1.22689,&nbsp;16.9989</tt></label><br /> <label><input type="radio" name="Problem-22" value="4" />
+
+
+
+
+
+<tt>1.85718,&nbsp;4.53640</tt> </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 22 -->
+
+
+
+      <h4><a name="tth_sEc1.1.3">
+1.1.3</a>&nbsp;&nbsp;Using answers</h4>
+<div class="p"><!----></div>
+The output of <tt>fzeros</tt> is a collection of values. It may be desirable to pass these onto another function. This is essentially <i>composition</i>.  For example, we can check our work using this pattern:
+<pre>
+f(x)&nbsp;=&nbsp;cos(x)&nbsp;+&nbsp;cos(2x)
+zs&nbsp;=&nbsp;fzeros(f,&nbsp;[0,2pi])
+map(f,&nbsp;zs)
+
+</pre>
+
+<pre>
+2-element&nbsp;Array{Float64,1}:
+&nbsp;-3.33067e-16
+&nbsp;&nbsp;2.77556e-16
+</pre>
+
+<div class="p"><!----></div>
+We see that the values are all basically 0, save for round-off error.
+<ul>
+<li> Let <i>f</i>(<i>x</i>) = 5<i>x</i><sup>4</sup>&#8722;6<i>x</i><sup>2</sup> and <i>g</i>(<i>x</i>) = 20<i>x</i><sup>3</sup> &#8722; 12<i>x</i>. What are the values   of <i>f</i> at the zeros of <i>g</i>? Show your commands and answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 23-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-23"  rows="3" cols="60" wrap="virtual">g(x) = 20*x^3 - 12*x
+fzeros(g)
+f(x)=5*x^4-6*x^2
+f(-0.774597), f(0), f( 0.774597)
+(-1.7999999999986875,0,-1.7999999999986875)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 23 -->
+
+
+
+      <h4><a name="tth_sEc1.1.4">
+1.1.4</a>&nbsp;&nbsp;Issues with numerics</h4>
+<div class="p"><!----></div>
+The <tt>fzero</tt> function implementing the bisection method is guaranteed to return a value where the function being evaluated crosses zero, though that value may not be an exact zero. However, this need not be the actual value being sought. This can happen when the function being evaluated is close to zero near the zero. For example, the function (<i>x</i>&#8722;1)<sup>5</sup> = <i>x</i><sup>5</sup> &#8722; 5<i>x</i><sup>4</sup> + 10<i>x</i><sup>3</sup> &#8722; 10<i>x</i><sup>2</sup> + 5<i>x</i> &#8722; 1 will be very flat near the one real zero, 1. If we try to find this zero with the expanded polynomial, we only get close:
+<pre>
+f(x)&nbsp;=&nbsp;x^5&nbsp;-&nbsp;5x^4&nbsp;+&nbsp;10x^3&nbsp;-&nbsp;10x^2&nbsp;+&nbsp;5x&nbsp;-&nbsp;1
+fzero(f,&nbsp;.9,&nbsp;1.1)
+
+</pre>
+
+<pre>
+0.9994628906249997
+</pre>
+
+<ul>
+<li> What zero does <tt>fzero</tt> return if instead of the expanded polynomial, the factored form <tt>f(x) = (x-1)^5</tt> were used?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 24-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-24" value="1.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 24 -->
+
+
+
+<ul>
+<li> Make a plot of the expanded polynomial over the interval [0.999, 1.001]. How many zeros does the graph show?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 25-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-25" value="1" />
+
+
+
+
+
+Many zeros</label> <label><input type="radio" name="Problem-25" value="2" checked="checked" />
+
+
+
+
+
+Just one at x=1 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 25 -->
+
+
+
+<ul>
+<li> There can be numeric issues when roots of a polynomial are close to each other. For example, consider the polynomial parameterized by <tt>delta</tt>:
+<div class="p"><!----></div>
+</li>
+</ul>
+<pre>
+delta&nbsp;=&nbsp;0.01
+f(x)&nbsp;=&nbsp;(x-1-delta)*(x-1)*(x-1+delta)
+fzeros(f)
+
+</pre>
+
+<pre>
+3-element&nbsp;Array{Real,1}:
+&nbsp;1.0&nbsp;
+&nbsp;1.0&nbsp;
+&nbsp;1.01
+</pre>
+
+<div class="p"><!----></div>
+The above easily finds three roots separated by <tt>delta</tt>. What happens if <tt>delta</tt> is smaller, say <tt>delta = 0.0001</tt>, so the three mathematical roots are even closer together? Are all three roots still found by <tt>fzeros</tt>?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 26-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-26" value="1" />
+
+
+
+
+
+Yes</label> <label><input type="radio" name="Problem-26" value="2" checked="checked" />
+
+
+
+
+
+No </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 26 -->
+
+
+
+<div class="p"><!----></div>
+<div><input type="hidden" name=".cgifields" value="Problem-8"  /><input type="hidden" name=".cgifields" value="Problem-11"  /><input type="hidden" name=".cgifields" value="Problem-4"  /><input type="hidden" name=".cgifields" value="Problem-10"  /><input type="hidden" name=".cgifields" value="Problem-21"  /><input type="hidden" name=".cgifields" value="Problem-18"  /><input type="hidden" name=".cgifields" value="Problem-16"  /><input type="hidden" name=".cgifields" value="Problem-22"  /><input type="hidden" name=".cgifields" value="Problem-5"  /><input type="hidden" name=".cgifields" value="Problem-26"  /><input type="hidden" name=".cgifields" value="Problem-25"  /></div></form>
+</body>
+</html>
+<CENTER><HR WIDTH="75%"></CENTER>
+<CENTER><ADDRESS>Powered by <A HREF=/MATLAB/About>e-Pupils</A>. Copyright &copy; 1998-2001. All rights reserved.</ADDRESS></CENTER>
+</body>
+</html>

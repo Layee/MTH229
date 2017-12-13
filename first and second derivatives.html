@@ -1,0 +1,1190 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Display grades</title>
+<link rel="stylesheet" type="text/css" href="/Matlab/style-sheets/default/style_sheet.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body link="#003366" alink="#003366" vlink="#003366" bgcolor="white" text="black" font="sans-serif,arial,helvetica">
+<FONT FACE=sans-serif,arial,helvetica COLOR="black">
+<SCRIPT>
+function openwin(target,width,height) {
+  var defopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1";
+  var wh = defopts + ",width="+ width + ", height=" + height;
+  var remotewindow = window.open("",target,defopts);
+  if (!remotewindow.opener) remotewindow.opener=self;
+  return remotewindow;
+}
+</SCRIPT>
+
+<TABLE width=100% BORDER=0  CELLPADDING=5 CELLSPACING=0><TR><TD align=left valign=center><FONT SIZE=+2><STRONG>Your Graded Project</STRONG></FONT></TD><TD align=RIGHT valign=center><img src=/Matlab/icons/common/user.gif border=0><strong>MatthewA Delaguila</strong></td></TR><TR><TD COLSPAN=2 VALIGN=bottom ALIGN=CENTER><A HREF=http://www.math.csi.cuny.edu/ TARGET=_top >Main</A> | <A HREF=ClassOutline TARGET=_top >New Project</A> | <A HREF=/MATLAB/Student/StudentPrefs TARGET=_top >Preferences</A> | <A HREF=/MATLAB/Email/SendEmail TARGET=EMAILPROF  onClick="openwin('EMAILPROF',600,450)">Send e-mail</A> | <A HREF=/MATLAB/Student/StudentNotes TARGET=NOTES  onClick="openwin('NOTES',600,450)">Messages</A> | <A HREF=/Matlab/Student/StudentManual.html TARGET=MANUAL  onClick="openwin('MANUAL',600,450)">Manual</A> | <A HREF=/MATLAB/Bug_Report TARGET=BUGREPORT  onClick="openwin('BUGREPORT',600,450)">Bugs</A> | <A HREF=/MATLAB/LogOut TARGET=_top >LogOut</A></TD></TR></TABLE><HR WIDTH=100% ALIGN=center>
+<form method="post" action="/MATLAB/Student/CheckGrade?section=42029561&class=62401530&professor=fabregat&topic=42182431" enctype="multipart/form-data">
+<CENTER><p class="Message">Your grade and any comment from the professor appears with each question.</p></CENTER> 
+     
+
+
+<style>
+pre {font-size: 1.2em; background-color: #EEF0F5;}
+ul li {list-style-image: url(http://www.math.csi.cuny.edu/static/images/julia.png);}  
+</style>
+
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Questions to be handed in on first and second derivatives and their relationships</h2>
+     <h3><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;Exploring first and second derivatives with Julia:</h3>
+<div class="p"><!----></div>
+To get started, we load the <tt>MTH229</tt> package:
+<pre>
+using&nbsp;MTH229
+
+</pre>
+
+<div class="p"><!----></div>
+Recall, the <tt>MTH229</tt> package overloads <tt>'</tt> so that the same prime notation of mathematics is available in <tt>Julia</tt> for indicating derivatives of functions.
+      <h4><a name="tth_sEc1.1.1">
+1.1.1</a>&nbsp;&nbsp;Quick background</h4>
+<div class="p"><!----></div>
+Read about this material here: <a href="http://mth229.github.io/first-second-derivatives.html">Exploring first and second derivatives with Julia</a>.
+<div class="p"><!----></div>
+For the impatient, this assignment looks at the relationship between a function, <i>f</i>(<i>x</i>), and its first and second derivatives, <i>f</i>&#8242;(<i>x</i>) and <i>f</i>"(<i>x</i>). The basic relationship can be summarized (though the devil is in the details) by:
+<ul>
+<li> If the first derivative is <i>positive</i> on (<i>a</i>,<i>b</i>) then the function   is <i>increasing</i> on (<i>a</i>,<i>b</i>).
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> If the second derivative is <i>positive</i> on (<i>a</i>,<i>b</i>) then the function   is <i>concave up</i> on (<i>a</i>,<i>b</i>).
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+(The "devil" here is that the converse statements are usually - but not always - true.)
+<div class="p"><!----></div>
+As a reminder
+<ul>
+<li> A <b>critical</b> point of <i>f</i> is a value in the domain of <i>f</i>(<i>x</i>) for which the derivative is 0 or undefined. These are often - but <b>not always</b> - where <i>f</i>(<i>x</i>) has a local maximum or minimum.
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> An <b>inflection point</b> of <i>f</i> is a value in the domain of <i>f</i>(<i>x</i>) where the concavity of <i>f</i> changes. (These are <i>often</i> - but <b>not always</b> - where <i>f</i>"(<i>x</i>)=0.)
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+In addition, there are two main derivative tests:
+<ul>
+<li> The <b>first derivative test</b>:  This states that for a differentiable function <i>f</i>(<i>x</i>) with a critical point at <i>c</i> then if <i>f</i>&#8242;(<i>x</i>) changes sign from + to &#8722; at <i>c</i> then <i>f</i>(<i>c</i>) is a local maximum and if <i>f</i>&#8242;(<i>x</i>) changes sign from &#8722; to + then <i>f</i>(<i>c</i>) is a local minimum.
+<div class="p"><!----></div>
+</li>
+</ul>
+<ul>
+<li> The <b>second derivative test</b>: This states that if <i>c</i> is a critical point of <i>f</i>(<i>x</i>) and <i>f</i>"(<i>c</i>)  &gt;  0 then <i>f</i>(<i>c</i>) is a local minimum and if <i>f</i>"(<i>c</i>)  &lt;  0 then <i>f</i>(<i>c</i>) is a local maximum.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+To investigate these concepts in <tt>Julia</tt> we describe a few functions.
+<div class="p"><!----></div>
+In the notes, the following function is used to plot a function <tt>f</tt> using two colors depending on whether the second function, <tt>g</tt> is positive or not. This function is in the <tt>MTH229</tt> package.
+<pre>
+function&nbsp;plotif(f,&nbsp;g,&nbsp;a,&nbsp;b)
+&nbsp;&nbsp;plot([f,&nbsp;x&nbsp;-&#62;&nbsp;g(x)&nbsp;&#62;&nbsp;0.0&nbsp;?&nbsp;f(x)&nbsp;:&nbsp;NaN],&nbsp;a,&nbsp;b,&nbsp;linewidth=5)
+end
+
+</pre>
+
+<div class="p"><!----></div>
+This function allows a graphical exploration of the above facts. For example, <tt>plotif(f,f,a,b)</tt> will show a different color when <i>f</i>(<i>x</i>) is <i>positive</i> and <tt>plotif(f,f', a, b)</tt> will show a different color when <i>f</i>(<i>x</i>) is <i>increasing</i>. The latter is illustrated with:
+<pre>
+f(x)&nbsp;=&nbsp;1&nbsp;+&nbsp;cos(x)&nbsp;+&nbsp;cos(2x)
+plotif(f,&nbsp;f',&nbsp;0,&nbsp;2pi)&nbsp;&nbsp;#&nbsp;color&nbsp;increasing
+plot!(zero)
+
+</pre>
+
+<pre>
+ErrorException("If&nbsp;you&nbsp;want&nbsp;to&nbsp;plot&nbsp;the&nbsp;function&nbsp;`zero`,&nbsp;you&nbsp;need&nbsp;to&nbsp;define&nbsp;the&nbsp;x&nbsp;values!")
+
+</pre>
+
+
+<div class="p"><!----></div>
+We can graphically identify zeros or critical points or find them numerically by finding zeroes of the appropriate function.  To find zeros we have the function call <tt>fzero(f, a)</tt> to find a zero iteratively starting at <i>x</i>=<i>a</i> or <tt>fzeros(f, a, b)</tt> to naively search for any zeros in the interval [<i>a</i>,<i>b</i>].  (Recall, <tt>fzeros</tt> may miss some values, so a graph should always be made to double check)
+<div class="p"><!----></div>
+For example to find a zero in <tt>f</tt> near <tt>1.5</tt>:
+<pre>
+f(x)&nbsp;=&nbsp;1&nbsp;+&nbsp;cos(x)&nbsp;+&nbsp;cos(2x)
+fzero(f,&nbsp;1.5)
+
+</pre>
+
+<pre>
+1.5707963267948966
+</pre>
+
+<div class="p"><!----></div>
+Or to get any critical points of <tt>f</tt> (it is continuosly differentiable, so all critical points are given by solving <i>f</i>&#8242;(<i>x</i>) = 0):
+<pre>
+zs&nbsp;=&nbsp;fzeros(f',&nbsp;0,&nbsp;2pi)
+
+</pre>
+
+<pre>
+5-element&nbsp;Array{Float64,1}:
+&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;1.82348
+&nbsp;3.14159
+&nbsp;4.45971
+&nbsp;6.28319
+</pre>
+
+<div class="p"><!----></div>
+The answer from <tt>fzeros</tt> is a vector of values. You can get individual ones different ways or work with them all at once. For example, here is the function's value at each of the critical points:
+<pre>
+map(f,&nbsp;zs)
+
+</pre>
+
+<pre>
+5-element&nbsp;Array{Float64,1}:
+&nbsp;&nbsp;3.0&nbsp;&nbsp;
+&nbsp;-0.125
+&nbsp;&nbsp;1.0&nbsp;&nbsp;
+&nbsp;-0.125
+&nbsp;&nbsp;3.0&nbsp;&nbsp;
+</pre>
+
+      <h4><a name="tth_sEc1.1.2">
+1.1.2</a>&nbsp;&nbsp;Questions</h4>
+      <h4><a name="tth_sEc1.1.3">
+1.1.3</a>&nbsp;&nbsp;Graphical explorations</h4>
+<ul>
+<li> The <tt>airy</tt> function is a <i>built-in</i> function that is important for   some applications. It is likely to be unfamiliar. Make a graph using   <tt>plotif</tt> to investigate when the <tt>airy</tt> function is positive on the   interval (&#8722;5,5). Your answer should use interval   notation. (Recall, when the second function passed to <tt>plotif</tt> is   positive, the graph uses a different color, so you need to think   about what function that should be.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 1-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-1"  rows="3" cols="60" wrap="virtual">f(x) = airy(x)
+plotif(f, f, -5, 5)
+airy function is positive on the interval 
+[-5,-4.08795)  (-2.33811,5.0]</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 1 -->
+
+
+
+<ul>
+<li> Make a graph using <tt>plotif</tt> to investigate when the function <i>f</i>(<i>x</i>) = <i>x</i><sup><i>x</i></sup> is <i>increasing</i> on the interval (0,2). Your answer should use   interval notation.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 2-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-2"  rows="3" cols="60" wrap="virtual">f(x)=x^x
+plotif(f, f', 0, 2)
+[0.367879,2)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 2 -->
+
+
+
+<ul>
+<li> Make a graph using <tt>plotif</tt> to investigate when the function
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>x</i>) = </td><td nowrap="nowrap" align="center">
+<i>x</i>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>x</i><sup>2</sup>+9<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+is <i>concave up</i> on the interval (&#8722;10,10). Your answer should use interval notation. 
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 3-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-3"  rows="3" cols="60" wrap="virtual">f(x)= x/(x^2+9)
+plotif(f,f'',-10,10)
+[-5.19615,0) [5,10)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 3 -->
+
+
+
+<ul>
+<li> Make a graph using <tt>plotif</tt> to identify any <i>critical points</i> of   <i>f</i>(<i>x</i>) = <i>x</i> ln(<i>x</i>) on the interval (0,4). Points where the function   changes from increasing to decreasing will be critical points   (though there may be others).
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 4-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-4"  rows="3" cols="60" wrap="virtual">f(x)=x*log(x)
+plotif(f,f',0,4)
+fzeros(f',0,4)
+0.367879</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 4 -->
+
+
+
+<ul>
+<li> Make a graph using <tt>plotif</tt> to identify any <i>inflection points</i> of   <i>f</i>(<i>x</i>) = sin(<i>x</i>) &#8722; <i>x</i> over the interval (&#8722;5,5). Points where the   function changes concavity are inflection points (though there may   be others).
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 5-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-5"  rows="3" cols="60" wrap="virtual">f(x)=sin(x)-x
+plotif(f,f'',-5,5)
+fzeros(f'',-5,5)
+-3.14159, -0.0 , 3.14159</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 5 -->
+
+
+
+<ul>
+<li> For any polynomial <i>p</i>(<i>x</i>), between any two consecutive zeros there   must be a critical point, perhaps more than one.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+For <i>p</i>(<i>x</i>) = <i>x</i><sup>4</sup> + <i>x</i><sup>3</sup> &#8722; 7<i>x</i><sup>2</sup> &#8722; <i>x</i> + 6, there are zeros &#8722;3, &#8722;1,   1 and 2. Using <tt>plotif</tt>, identify which critical point(s) are in [&#8722;1, 1]?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 6-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-6" value="1" checked="checked" />
+
+
+
+
+
+&#8722;0.07046</label><br /> <label><input type="radio" name="Problem-6" value="2" />
+
+
+
+
+
+&#8722;0.72, 0.75</label><br /> <label><input type="radio" name="Problem-6" value="3" />
+
+
+
+
+
+0</label><br /> <label><input type="radio" name="Problem-6" value="4" />
+
+
+
+
+
+0, 0.25, 0.57</label><br /> <label><input type="radio" name="Problem-6" value="5" />
+
+
+
+
+
+There are no critical points, as p(x) is not 0 in (-1,1) </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 6 -->
+
+
+
+      <h4><a name="tth_sEc1.1.4">
+1.1.4</a>&nbsp;&nbsp;Finding more precise numeric values</h4>
+<ul>
+<li> Use <tt>fzero</tt> or <tt>fzeros</tt> to numerically identify all <i>critical points</i> to the function <i>f</i>(<i>x</i>) = 2<i>x</i><sup>3</sup> &#8722; 6<i>x</i><sup>2</sup> &#8722; 2<i>x</i> + 4. (There are no more than 2.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 7-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-7" value="1" />
+
+
+
+
+
+1</label> <label><input type="radio" name="Problem-7" value="2" />
+
+
+
+
+
+$ 0.745898, 3.11491$</label> <label><input type="radio" name="Problem-7" value="3" />
+
+
+
+
+
+&#8722;0.860806, 0.745898, 3.11491</label> <label><input type="radio" name="Problem-7" value="4" checked="checked" />
+
+
+
+
+
+&#8722;0.154701, 2.1547 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 7 -->
+
+
+
+<ul>
+<li> Use <tt>fzero</tt> of <tt>fzeros</tt> to numerically identify all <i>inflection points</i> for the   function <i>f</i>(<i>x</i>) = ln(<i>x</i><sup>2</sup> + 2<i>x</i> + 5).
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 8-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-8" value="1" />
+
+
+
+
+
+There are none</label><br /> <label><input type="radio" name="Problem-8" value="2" />
+
+
+
+
+
+There is one at x=&#8722;1.0</label><br /> <label><input type="radio" name="Problem-8" value="3" checked="checked" />
+
+
+
+
+
+There is one at x=1.0 and one at x=&#8722;3.0</label><br /> <label><input type="radio" name="Problem-8" value="4" />
+
+
+
+
+
+There is one at each of x=&#8722;4.4641, &#8722;1.0, and 2.4641 </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 8 -->
+
+
+
+<ul>
+<li> Numerically identify all <i>critical points</i> to the rational function   <i>f</i>(<i>x</i>) defined below. Graphing is useful to identify where the   possible values are. (A critical point by definition is in the domain of the function.)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>x</i>) = </td><td nowrap="nowrap" align="center">
+(<i>x</i>&#8722;3)&#183;(<i>x</i>&#8722;1)&#183;(<i>x</i>+1)&#183;(<i>x</i>+3)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(<i>x</i>&#8722;2)&#183;(<i>x</i>+2)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 9-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-9" value="1" checked="checked" />
+
+
+
+
+
+0</label> <label><input type="radio" name="Problem-9" value="2" />
+
+
+
+
+
+&#8722;2, 2</label> <label><input type="radio" name="Problem-9" value="3" />
+
+
+
+
+
+&#8722;3, &#8722;1, 1, 3</label> <label><input type="radio" name="Problem-9" value="4" />
+
+
+
+
+
+&#8722;2.44949, 2.44949 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 9 -->
+
+
+
+<ul>
+<li> Suppose the first derivative of <i>f</i> is <i>f</i>&#8242;(<i>x</i>) = <i>x</i><sup>3</sup> &#8722; 6<i>x</i><sup>2</sup> + 11<i>x</i> &#8722; 6. Where is <i>f</i>(<i>x</i>) increasing?   Use interval notation in your answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 10-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-10" value="1" />
+
+
+
+
+
+It is always increasing</label><br /> <label><input type="radio" name="Problem-10" value="2" />
+
+
+
+
+
+(&#8722;&#8734;, 1.42265) and (2.57735, &#8734;)</label><br /> <label><input type="radio" name="Problem-10" value="3" />
+
+
+
+
+
+(2.0, &#8734;)</label><br /> <label><input type="radio" name="Problem-10" value="4" checked="checked" />
+
+
+
+
+
+(1.0, 2.0) and (3.0, &#8734;) </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 10 -->
+
+
+
+<ul>
+<li> Suppose the second derivative of <i>f</i> is <i>f</i>"(<i>x</i>) = <i>x</i><sup>2</sup> &#8722; 3<i>x</i> + 2. Where is <i>f</i>(<i>x</i>) concave up? Use   interval notation in your answer.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 11-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-11" value="1" />
+
+
+
+
+
+(1.0, 2.0)</label><br /> <label><input type="radio" name="Problem-11" value="2" />
+
+
+
+
+
+(1.5, &#8734;)</label><br /> <label><input type="radio" name="Problem-11" value="3" checked="checked" />
+
+
+
+
+
+(&#8722;&#8734;, 1.0) and (2.0, &#8734;)</label><br /> <label><input type="radio" name="Problem-11" value="4" />
+
+
+
+
+
+(&#8722;&#8734;, &#8734;) - it is always concave up </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 11 -->
+
+
+
+<ul>
+<li> For the function <i>f</i>(<i>x</i>) suppose you know <i>f</i>&#8242;(<i>x</i>)=<i>x</i><sup>3</sup> &#8722; 5<i>x</i><sup>2</sup> + 8<i>x</i> &#8722; 4. Find <i>all</i> the critical points. Use the first derivative test to classify them as local extrema <i>if</i> you can. If you can't say why.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 12-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-12"  rows="3" cols="60" wrap="virtual">f(x)=x^3-5*x^2+8*x-4
+fzeros(f)
+ 1,2
+x=1 is a minumum because f'(1) changes signs from negative to positive from the left of one to the right of one and there is no sign change from left of f'(2) to right f'(2) so i cant say 
+</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 12 -->
+
+
+
+<ul>
+<li> Suppose the first derivative of <i>f</i> is <i>f</i>&#8242;(<i>x</i>) = (<i>x</i><sup>2</sup> &#8722; 2) &#183;<i>e</i><sup>&#8722;<i>x</i></sup>. First find the critical points of <i>f</i>(<i>x</i>), then use the second derivative test to classify them.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+The critical points are:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 13-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-13" value="1" />
+
+
+
+
+
+&#8722;0.732051</label> <label><input type="radio" name="Problem-13" value="2" />
+
+
+
+
+
+&#8722;0.732051, 2.73205</label> <label><input type="radio" name="Problem-13" value="3" />
+
+
+
+
+
+0.0</label> <label><input type="radio" name="Problem-13" value="4" checked="checked" />
+
+
+
+
+
+&#8722;1.41421, 1.41421 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 13 -->
+
+
+
+<div class="p"><!----></div>
+Classify your critical points using the second derivative test
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 14-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-14"  rows="3" cols="60" wrap="virtual">f(x)=(x^2-2)*e^-x
+plotif(f,f',-15,15)
+-11.633916747231885,0.6876411332582335
+concave down at x=-1.41 and concave up at 1.41</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 14 -->
+
+
+
+<ul>
+<li> Suppose the first derivative of <i>f</i> is <i>f</i>&#8242;(<i>x</i>) = <i>x</i><sup>3</sup> &#8722; 7<i>x</i><sup>2</sup> + 14. Based on  a plot over the interval   [&#8722;4, 8]. On what subintervals is <i>f</i>(<i>x</i>) increasing?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 15-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-15" value="1" checked="checked" />
+
+
+
+
+
+(&#8722;1.29, 1.61) and (6.69, &#8734;)</label><br /> <label><input type="radio" name="Problem-15" value="2" />
+
+
+
+
+
+(&#8722;&#8734;, 0)</label><br /> <label><input type="radio" name="Problem-15" value="3" />
+
+
+
+
+
+(&#8722;&#8734;, 0) and (6.69, &#8734;)</label><br /> <label><input type="radio" name="Problem-15" value="4" />
+
+
+
+
+
+(&#8722;&#8734;, 0) and (4.67, &#8734;) </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 15 -->
+
+
+
+<div class="p"><!----></div>
+What did you use to find your last answer?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 16-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-16" value="1" checked="checked" />
+
+
+
+
+
+f&#8242;(x)  &gt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-16" value="2" />
+
+
+
+
+
+f"(x)  &gt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-16" value="3" />
+
+
+
+
+
+f&#8242;(x)  &lt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-16" value="4" />
+
+
+
+
+
+f"(x)  &lt;  0 on these subintervals </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 16 -->
+
+
+
+<div class="p"><!----></div>
+What are the <i>x</i>-coordinates of the relative minima of <i>f</i>(<i>x</i>)?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 17-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-17" value="1" />
+
+
+
+
+
+4.56 and 0</label> <label><input type="radio" name="Problem-17" value="2" />
+
+
+
+
+
+4.56</label> <label><input type="radio" name="Problem-17" value="3" checked="checked" />
+
+
+
+
+
+&#8722;1.29 and 6.69</label> <label><input type="radio" name="Problem-17" value="4" />
+
+
+
+
+
+&#8722;1.29 and 1.61 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 17 -->
+
+
+
+<div class="p"><!----></div>
+On what subintervals is <i>f</i>(<i>x</i>) concave up?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 18-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-18" value="1" />
+
+
+
+
+
+It is always concave down</label><br /> <label><input type="radio" name="Problem-18" value="2" checked="checked" />
+
+
+
+
+
+(&#8722;&#8734;, 0) and (4.67, &#8734;)</label><br /> <label><input type="radio" name="Problem-18" value="3" />
+
+
+
+
+
+(&#8722;&#8734;, 1.167)</label><br /> <label><input type="radio" name="Problem-18" value="4" />
+
+
+
+
+
+(1.167, &#8734;) </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 18 -->
+
+
+
+<div class="p"><!----></div>
+What did you use to decide?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 19-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-19" value="1" />
+
+
+
+
+
+f&#8242;(x)  &gt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-19" value="2" checked="checked" />
+
+
+
+
+
+f"(x)  &gt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-19" value="3" />
+
+
+
+
+
+f&#8242;(x)  &lt;  0 on these subintervals</label><br /> <label><input type="radio" name="Problem-19" value="4" />
+
+
+
+
+
+f"(x)  &lt;  0 on these subintervals </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 19 -->
+
+
+
+<div class="p"><!----></div>
+Find the <i>x</i> coordinates of the inflection points of <i>f</i>(<i>x</i>).
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 20-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-20" value="1" />
+
+
+
+
+
+Not listed</label> <label><input type="radio" name="Problem-20" value="2" />
+
+
+
+
+
+&#8722;1.29884, 1.61194, 6.6869</label> <label><input type="radio" name="Problem-20" value="3" />
+
+
+
+
+
+2.3333</label> <label><input type="radio" name="Problem-20" value="4" checked="checked" />
+
+
+
+
+
+At 0 and 4.67 </label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 20 -->
+
+
+
+<ul>
+<li> Suppose you know the function <i>f</i>(<i>x</i>) has the second derivative given   by the <tt>airy</tt> function. Use this to answer the following questions   about <i>f</i>(<i>x</i>) over the interval (&#8722;5, 0).
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+On what interval(s) is the function <i>f</i>(<i>x</i>) positive?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 21-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-21" value="1" checked="checked" />
+
+
+
+
+
+(&#8722;5, &#8722;4.08795) and (&#8722;2.33811,0)</label><br /> <label><input type="radio" name="Problem-21" value="2" />
+
+
+
+
+
+(&#8722;5, &#8722;4.8201)  and (&#8722;3.2482, &#8722;1.01879)</label><br /> <label><input type="radio" name="Problem-21" value="3" />
+
+
+
+
+
+(&#8722;4.83074, &#8722;3.27109) and (&#8722;1.17371, 0)</label><br /> <label><input type="radio" name="Problem-21" value="4" />
+
+
+
+
+
+Can't tell. </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 21 -->
+
+
+
+<div class="p"><!----></div>
+On what interval(s) is the function <i>f</i>(<i>x</i>) increasing?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 22-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-22" value="1" />
+
+
+
+
+
+(&#8722;5, &#8722;4.08795) and (&#8722;2.33811,0)</label><br /> <label><input type="radio" name="Problem-22" value="2" checked="checked" />
+
+
+
+
+
+(&#8722;5, &#8722;4.8201) and (&#8722;3.2482, &#8722;1.01879)</label><br /> <label><input type="radio" name="Problem-22" value="3" />
+
+
+
+
+
+(&#8722;4.83074, &#8722;3.27109) and (&#8722;1.17371, 0)</label><br /> <label><input type="radio" name="Problem-22" value="4" />
+
+
+
+
+
+Can't tell. </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 22 -->
+
+
+
+<div class="p"><!----></div>
+On what interval(s) is the function <i>f</i>(<i>x</i>) concave up?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 23-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="partial credit" src="/Matlab/icons/default/checkgrade-partial.gif" border="0" /><BR> You received <BR>50% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-23" value="1" />
+
+
+
+
+
+(&#8722;5, &#8722;4.08795) and (&#8722;2.33811,0)</label><br /> <label><input type="radio" name="Problem-23" value="2" />
+
+
+
+
+
+(&#8722;5, &#8722;4.8201) and (&#8722;3.2482, &#8722;1.01879)</label><br /> <label><input type="radio" name="Problem-23" value="3" checked="checked" />
+
+
+
+
+
+(&#8722;4.83074, &#8722;3.27109) and (&#8722;1.17371, 0)</label><br /> <label><input type="radio" name="Problem-23" value="4" />
+
+
+
+
+
+Can't tell. </label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 23 -->
+
+
+
+
+<ul>
+<li> A simplified model for the concentration (micrograms/milliliter) of a certain slow-reacting   antibiotic in the bloodstream <i>t</i> hours after injection into muscle   tissue is given by
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>f</i>(<i>t</i>) = <i>t</i><sup>2</sup> &#183;<i>e</i><sup>&#8722;<i>t</i>/16</sup>, &nbsp;&nbsp;&nbsp; <i>t</i>  &#8805; 0.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+When will there be maximum concentration?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 24-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-24" value="32.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 24 -->
+
+
+
+<div class="p"><!----></div>
+In the units given, how much is the maximum concentration?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 25-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-25" value="138.5833300342914" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 25 -->
+
+
+
+<div class="p"><!----></div>
+When will the concentration dip below a level of 20.0?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 26-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-26" value="99.2" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 26 -->
+
+
+
+<div class="p"><!----></div>
+Estimate from a graph when the concentration function changes concavity:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 27-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-27"  rows="3" cols="60" wrap="virtual">plotif(f,f'',0,100)
+fzeros(f'',0,100)
+The graph changes concavity at 9.37258, 54.6274 </textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 27 -->
+
+
+
+
+<ul>
+<li> (From Rogawski) Ornithologists have found that the power consumed   (<i>Joules</i>/<i>sec</i>) by a bird flying a certain velocity is given (in   Joules) by
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>P</i>(<i>v</i>) = </td><td nowrap="nowrap" align="center">
+ 16 
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>v</i><br /></td><td nowrap="nowrap" align="center">
++ (</td><td nowrap="nowrap" align="center">
+<i>v</i>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>10<br /></td><td nowrap="nowrap" align="center">
+)<sup>3</sup>.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+A bird stores 5 &#183;10<sup>4</sup> joules of energy, so the total distance it can fly at a fixed velocity <i>v</i> depends on the velocity and is given by (rate times time):
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>D</i>(<i>v</i>) = <i>v</i> &#183;</td><td nowrap="nowrap" align="center">
+ 5 &#183;10<sup>4</sup> 
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>P</i>(<i>v</i>)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+
+<ul>
+<li> Find the velocity <i>v</i> that minimizes <i>P</i>(<i>v</i>). It happens at the critical point.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 28-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-28" value=" 8.54574" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 28 -->
+
+
+
+<ul>
+<li> Migrating birds are actually a bit smarter and can adjust their velocity to <i>maximize</i> distance traveled, and not <i>minimize</i> power consumed. Find the velocity that maximizes <i>D</i>. It happens at a critical point.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 29-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-29" value="11.2468" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 29 -->
+
+
+
+<ul>
+<li> Let <i>v</i><sub><i>d</i></sub> be the velocity that <i>maximizes</i> distance. What is the value of
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>P</i>&#8242;(<i>v</i><sub><i>d</i></sub>) &#8722; </td><td nowrap="nowrap" align="center">
+<i>P</i>(<i>v</i><sub><i>d</i></sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>v</i><sub><i>d</i></sub><br /></td><td nowrap="nowrap" align="center">
+?</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 30-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-30" value="-2.384672560251655e-6" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 30 -->
+
+
+
+<div class="p"><!----></div>
+<div><input type="hidden" name=".cgifields" value="Problem-15"  /><input type="hidden" name=".cgifields" value="Problem-8"  /><input type="hidden" name=".cgifields" value="Problem-23"  /><input type="hidden" name=".cgifields" value="Problem-20"  /><input type="hidden" name=".cgifields" value="Problem-7"  /><input type="hidden" name=".cgifields" value="Problem-22"  /><input type="hidden" name=".cgifields" value="Problem-17"  /><input type="hidden" name=".cgifields" value="Problem-19"  /><input type="hidden" name=".cgifields" value="Problem-11"  /><input type="hidden" name=".cgifields" value="Problem-6"  /><input type="hidden" name=".cgifields" value="Problem-10"  /><input type="hidden" name=".cgifields" value="Problem-18"  /><input type="hidden" name=".cgifields" value="Problem-21"  /><input type="hidden" name=".cgifields" value="Problem-13"  /><input type="hidden" name=".cgifields" value="Problem-16"  /><input type="hidden" name=".cgifields" value="Problem-9"  /></div></form>
+</body>
+</html>
+<CENTER><HR WIDTH="75%"></CENTER>
+<CENTER><ADDRESS>Powered by <A HREF=/MATLAB/About>e-Pupils</A>. Copyright &copy; 1998-2001. All rights reserved.</ADDRESS></CENTER>
+</body>
+</html>

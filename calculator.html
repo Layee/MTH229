@@ -1,0 +1,977 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Display grades</title>
+<link rel="stylesheet" type="text/css" href="/Matlab/style-sheets/default/style_sheet.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body link="#003366" alink="#003366" vlink="#003366" bgcolor="white" text="black" font="sans-serif,arial,helvetica">
+<FONT FACE=sans-serif,arial,helvetica COLOR="black">
+<SCRIPT>
+function openwin(target,width,height) {
+  var defopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1";
+  var wh = defopts + ",width="+ width + ", height=" + height;
+  var remotewindow = window.open("",target,defopts);
+  if (!remotewindow.opener) remotewindow.opener=self;
+  return remotewindow;
+}
+</SCRIPT>
+
+<TABLE width=100% BORDER=0  CELLPADDING=5 CELLSPACING=0><TR><TD align=left valign=center><FONT SIZE=+2><STRONG>Your Graded Project</STRONG></FONT></TD><TD align=RIGHT valign=center><img src=/Matlab/icons/common/user.gif border=0><strong>MatthewA Delaguila</strong></td></TR><TR><TD COLSPAN=2 VALIGN=bottom ALIGN=CENTER><A HREF=http://www.math.csi.cuny.edu/ TARGET=_top >Main</A> | <A HREF=ClassOutline TARGET=_top >New Project</A> | <A HREF=/MATLAB/Student/StudentPrefs TARGET=_top >Preferences</A> | <A HREF=/MATLAB/Email/SendEmail TARGET=EMAILPROF  onClick="openwin('EMAILPROF',600,450)">Send e-mail</A> | <A HREF=/MATLAB/Student/StudentNotes TARGET=NOTES  onClick="openwin('NOTES',600,450)">Messages</A> | <A HREF=/Matlab/Student/StudentManual.html TARGET=MANUAL  onClick="openwin('MANUAL',600,450)">Manual</A> | <A HREF=/MATLAB/Bug_Report TARGET=BUGREPORT  onClick="openwin('BUGREPORT',600,450)">Bugs</A> | <A HREF=/MATLAB/LogOut TARGET=_top >LogOut</A></TD></TR></TABLE><HR WIDTH=100% ALIGN=center>
+<form method="post" action="/MATLAB/Student/CheckGrade?section=42029561&class=62401530&professor=fabregat&topic=18744959" enctype="multipart/form-data">
+<CENTER><p class="Message">Your grade and any comment from the professor appears with each question.</p></CENTER> 
+     
+
+
+<style>
+pre {font-size: 1.2em; background-color: #EEF0F5;}
+ul li {list-style-image: url(http://www.math.csi.cuny.edu/static/images/julia.png);}  
+</style>
+
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Questions to be handed in on Julia as a calculator</h2>
+      <h4><a name="tth_sEc1.0.1">
+1.0.1</a>&nbsp;&nbsp;Quick background</h4>
+<div class="p"><!----></div>
+Read about this material here: <a href="http://mth229.github.io/calculator.html">Julia as a calculator</a>.
+<div class="p"><!----></div>
+For the impatient, these questions cover the use of <tt>julia</tt> to replace what a calculator can do.
+      <h4><a name="tth_sEc1.0.2">
+1.0.2</a>&nbsp;&nbsp;The common operations on numbers: addition, subtraction,  multiplication, division, and powers.</h4>
+<div class="p"><!----></div>
+For the most part there is no surprise, once you learn the notations:   <tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt>, and <tt>^</tt>. (Though you may find that copying and   pasting minus signs will often cause an error, as only something   that looks like a minus sign is pasted in.)
+<div class="p"><!----></div>
+Using <tt>IJulia</tt>, one types the following into a cell and then presses the <i>run</i> button (or <i>shift-enter</i>):
+<pre>
+2&nbsp;+&nbsp;2
+
+</pre>
+
+<pre>
+4
+</pre>
+
+<div class="p"><!----></div>
+The answer follows below the cell.
+<div class="p"><!----></div>
+Here is how one does a slightly more complicated computation:
+<pre>
+(2&nbsp;+&nbsp;3)^4/(5&nbsp;+&nbsp;6)
+
+</pre>
+
+<pre>
+56.81818181818182
+</pre>
+
+<div class="p"><!----></div>
+As with your calculator, it is very important to use parentheses as appropriate to circumvent the usual order of operations.
+      <h4><a name="tth_sEc1.0.3">
+1.0.3</a>&nbsp;&nbsp;The use of the basic families of function: trigonometric, exponential, logarithmic.</h4>
+<div class="p"><!----></div>
+On a calculator, there are buttons used to compute various functions. In <tt>julia</tt>, there are <i>many</i> pre-defined functions that serve a similar role (and you will see how to define your own). Functions in <tt>julia</tt> have names and are called using parentheses to enclose their argument(s), as with:
+<pre>
+sin(pi/4),&nbsp;cos(pi/3)
+
+</pre>
+
+<pre>
+(0.7071067811865475,0.5000000000000001)
+</pre>
+
+<div class="p"><!----></div>
+(With <tt>IJulia</tt>, when a cell is executed only the last command computed is displayed, the above shows that using a comma to separate commands on the same line can be used to get two or more commands to be displayed.)
+<div class="p"><!----></div>
+Most basic functions in <tt>julia</tt> have easy to guess names, though you will need to learn some differences, such as <tt>log</tt> is for ln and <tt>asin</tt> for sin<sup>&#8722;1</sup>.
+      <h4><a name="tth_sEc1.0.4">
+1.0.4</a>&nbsp;&nbsp;the use of memory registers to remember intermediate values.</h4>
+<div class="p"><!----></div>
+Rather than have numbered memory registers, it is <i>easy</i> to assign a name to a value. For example,
+<pre>
+x&nbsp;=&nbsp;42
+
+</pre>
+
+<pre>
+42
+</pre>
+
+<div class="p"><!----></div>
+Names can be reassigned (though at times names for functions can not be reassigned to different types of values). For assigning more than one value at once, commas can be used as with the output:
+<pre>
+a,b,c&nbsp;=&nbsp;1,2,3
+
+</pre>
+
+<pre>
+(1,2,3)
+</pre>
+
+      <h4><a name="tth_sEc1.0.5">
+1.0.5</a>&nbsp;&nbsp;Julia, like math, has different number types</h4>
+<div class="p"><!----></div>
+Unlike a calculator, but just like math, <tt>julia</tt> has different types of numbers: integers, rational numbers, real numbers, and complex numbers. For the most part the distinction isn't much to worry about, but there are times where one must, such as overflow with integers. (One can only take the factorial of 20 with 64-bit integers, whereas on most calculators a factorial of 69 can be taken, but not 70.) Julia automatically assigns a type when it parses a value. a <tt>1</tt> will be an integer, a <tt>1.0</tt> an floating point number. Rational numbers are made by using two division symbols, <tt>1//2</tt>.
+<div class="p"><!----></div>
+For many operations the type will be conserved, such as adding to integers. For some operations, the type will be converted, such as dividing two integer values. Mathematically, we know we can divide some integers and still get an integer, but <tt>julia</tt> usually opts for the same output for its functions (and division is also a function) based on the type of the input, not the values of the input.
+<div class="p"><!----></div>
+Okay, maybe that is too much. Let's get started.
+      <h4><a name="tth_sEc1.0.6">
+1.0.6</a>&nbsp;&nbsp;Expressions</h4>
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+(5/9)(&#8722;10 &#8722; 32)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 1-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-1" value="-23.333333333333336" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 1 -->
+
+
+
+<ul>
+<li>  Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+9/5(100) + 32</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 2-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-2" value="212.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 2 -->
+
+
+
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#8722;4.9&#183;9<sup>2</sup> + 1.7 &#183;9 + 8.6</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 3-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-3" value="-373.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 3 -->
+
+
+
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1 + 2&#183;3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>4 + 5<sup>6</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 4-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-4" value="0.00044788534135261374" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 4 -->
+
+
+
+     <h3><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;Math functions</h3>
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl"><br /><font size="+2">&#8730;</font><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"> 0.61 &#183;(1&#8722; 0.61 )/100<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 5-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-5" value="0.048774993593028795" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 5 -->
+
+
+
+<ul>
+<li> Compute the following value (here math notation and computer notation are not the same):
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+cos<sup>2</sup>(&#960;/3)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 6-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-6" value="0.2500000000000001" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 6 -->
+
+
+
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+sin<sup>2</sup>(&#960;/3) &#183;cos((&#960;/6)<sup>2</sup>)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 7-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-7" value="0.7219905957444216" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 7 -->
+
+
+
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>e</i><sup>(1/2)&#183;(3 &#8722; 1.8 )<sup>2</sup></sup></td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 8-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-8" value="2.0544332106438876" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 8 -->
+
+
+
+<ul>
+<li> Compute the following value:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+1 + </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#183;3<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#183;3&#183;4<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#183;3&#183;4&#183;5<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 9-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-9" value="1.7166666666666668" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 9 -->
+
+
+
+<ul>
+<li> Compute the following value (<tt>cosd</tt> takes degree arguments, <tt>cos</tt> takes radian values):
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+5
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>cos( 54 <sup>&#176;</sup>)<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+8
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>sin( 54 <sup>&#176;</sup>)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 10-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-10" value="18.395051903518716" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 10 -->
+
+
+
+<ul>
+<li> In mathematics a function is defined not only by a rule but also by   a <i>domain</i> of possible values. Similarly with <tt>julia</tt>. What kind of   error does <tt>julia</tt> respond with if you try this command: <tt>sqrt(-1)</tt>?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 11-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-11" value="LoadError: DomainError: sqrt will only return a complex result if called with a complex argument. Try sqrt(complex(x)). while loading In[14], in expression starting on line 1   in sqrt at math.jl:146" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 11 -->
+
+
+
+     <h3><a name="tth_sEc1.2">
+1.2</a>&nbsp;&nbsp;Precedence</h3>
+<ul>
+<li> There are 5 operations in the following expression. Write a similar   expression using 4 pairs of parentheses that evaluates to the same   value:
+<div class="p"><!----></div>
+</li>
+</ul>
+ 
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+1 &#8722; 2 + 3 &#183;4 <sup>5</sup> / 6</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 12-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-12" value="511.0" size="25" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 12 -->
+
+
+
+<ul>
+<li> Which of these will also produce 1/(3&#183;4):
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 13-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-13" value="1" checked="checked" />
+
+
+
+
+
+<tt>1&nbsp;/&nbsp;3&nbsp;/&nbsp;4</tt></label><br /> <label><input type="radio" name="Problem-13" value="2" />
+
+
+
+
+
+<tt>1&nbsp;/&nbsp;3&nbsp;*&nbsp;4</tt></label><br /> <label><input type="radio" name="Problem-13" value="3" />
+
+
+
+
+
+<tt>1&nbsp;*&nbsp;3&nbsp;/&nbsp;4</tt></label><br /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 13 -->
+
+
+
+     <h3><a name="tth_sEc1.3">
+1.3</a>&nbsp;&nbsp;Variable</h3>
+<ul>
+<li> Let <tt>x=5</tt> and <tt>y=8</tt> compute
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>x</i> &#8722; sin(<i>x</i> + <i>y</i>)/cos(<i>x</i> &#8722; <i>y</i>)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 14-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-14" value="5.424414365027473" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 14 -->
+
+
+
+<ul>
+<li> For the polynomial
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>y</i> = <i>ax</i><sup>2</sup> + <i>bx</i> + <i>c</i></td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Let <i>a</i>=0.00014, <i>b</i>=0.61, <i>c</i>=649, and <i>x</i>=200. What is <i>y</i>?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 15-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-15" value="776.6" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 15 -->
+
+
+
+<ul>
+<li> If
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+sin(&#952;<sub>1</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>v</i><sub>1</sub><br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+sin(&#952;<sub>2</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>v</i><sub>2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+and &#952;<sub>1</sub> = &#960;/5, &#952;<sub>2</sub> = &#960;/6, and <i>v</i><sub>1</sub>=2, find <i>v</i><sub>2</sub>.
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 16-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-16" value="2.351141009169893" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 16 -->
+
+
+
+     <h3><a name="tth_sEc1.4">
+1.4</a>&nbsp;&nbsp;Some applications</h3>
+<ul>
+<li> The period of simple pendulum depends on a gravitational constant   <i>g</i>=9.8 and the pendulum length, <i>L</i>, in meters, according to the formula:   <i>T</i>=2&#960;&#8730;{<i>L</i>/<i>g</i>}.
+<div class="p"><!----></div>
+</li>
+</ul>
+<div class="p"><!----></div>
+A rope swing is timed to have a period of 6 seconds. How long is   the length of the rope if the formula applies?
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 17-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-17" value="8.936528397254193" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 17 -->
+
+
+
+<ul>
+<li> An object dropped from a building of height <i>h</i> (in feet) will fall   according to the laws of projectile motion:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<i>y</i>(<i>t</i>) = <i>h</i> &#8722; 16<i>t</i><sup>2</sup></td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+If <i>h</i>=51 find <i>y</i> if <i>t</i>=1.5.
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 18-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-18" value="15.0" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 18 -->
+
+
+
+<ul>
+<li> Suppose <i>v</i> = 2&#183;10<sup>8</sup> and <i>c</i> = 3 &#183;10<sup>8</sup> compute
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl"><br /><font size="+2">&#8730;</font><br />                                </td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">1 &#8722; <i>v</i><sup>2</sup>/<i>c</i><sup>2</sup><br /></div>                                </td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+(Be careful, this expression from a theory of relativity is susceptible to <i>integer</i> overflow on some computers!)
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 19-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-19" value="1.3416407864998738" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 19 -->
+
+
+
+     <h3><a name="tth_sEc1.5">
+1.5</a>&nbsp;&nbsp;Trig practice</h3>
+<ul>
+<li> A triangle has sides <i>a</i>=500, <i>b</i>=750 and <i>c</i>=901. Is this a right triangle?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 20-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-20" value="1" checked="checked" />
+
+
+
+
+
+Yes</label> <label><input type="radio" name="Problem-20" value="2" />
+
+
+
+
+
+No</label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 20 -->
+
+
+
+<ul>
+<li> The law of sines states for a triangle with angle <i>A</i>, <i>B</i>, and <i>C</i> and opposite sides labeled <i>a</i>, <i>b</i>, <i>c</i> one has
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ sin(<i>A</i>)/<i>a</i> = sin(<i>B</i>)/<i>b</i> = sin(<i>C</i>)/<i>c</i>.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+If <i>A</i>=115<sup>&#176;</sup>, <i>a</i>=123, and <i>b</i>=16, find <i>B</i> (in degrees).
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 21-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="incorrect" src="/Matlab/icons/default/checkgrade-zero.gif" border="0" /><BR> You received <BR>0% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-21" value="0.12329560672431775" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 21 -->
+
+
+
+<ul>
+<li> The law of cosines generalizes Pythagorean's theorem: <i>c</i><sup>2</sup> = <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup> &#8722; 2<i>ab</i> cos(<i>C</i>). A triangle has sides <i>a</i>=5, <i>b</i>=9, and   <i>c</i>=8. Find the angle <i>C</i> (in radians)
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 22-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-22" value="1.0852782044993055" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 22 -->
+
+
+
+     <h3><a name="tth_sEc1.6">
+1.6</a>&nbsp;&nbsp;Numbers</h3>
+<div class="p"><!----></div>
+Scientific notation represents real numbers as <i>a</i> &#183;10<sup><i>b</i></sup>, where <i>b</i> is an integer, and <i>a</i> may be a real number in the range &#8722;1 to 1. In <tt>julia</tt> such numbers are represented with an <tt>e</tt> to replace the 10, as with <tt>1.2e3</tt> which would be 1.2 &#183;10<sup>3</sup> (1,230) or <tt>3.2e-1</tt>, which would be 3.2 &#183;10<sup>&#8722;1</sup> (0.32).
+<ul>
+<li> The output of <tt>sin(pi)</tt> in <tt>julia</tt> gives <tt>1.2246467991473532e-16</tt>. Is this number
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 23-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-23" value="1" />
+
+
+
+
+
+close to 1.22</label> <label><input type="radio" name="Problem-23" value="2" checked="checked" />
+
+
+
+
+
+close to 0</label> <label><input type="radio" name="Problem-23" value="3" />
+
+
+
+
+
+close to -1.22</label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 23 -->
+
+
+
+<ul>
+<li> Which number is larger? <tt>9e-10</tt> or <tt>7e8</tt>?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 24-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-24" value="1" />
+
+
+
+
+
+<tt>9e-10</tt></label> <label><input type="radio" name="Problem-24" value="2" checked="checked" />
+
+
+
+
+
+<tt>7e8</tt></label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 24 -->
+
+
+
+<ul>
+<li>  Is <tt>7e-10</tt>  greater than <tt>8e-9</tt>?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 25-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-25" value="1" />
+
+
+
+
+
+Yes</label> <label><input type="radio" name="Problem-25" value="2" checked="checked" />
+
+
+
+
+
+No</label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 25 -->
+
+
+
+<ul>
+<li> Which number is closest to <tt>1.23e-4</tt>?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 26-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Select exactly one of the choices.</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><label><input type="radio" name="Problem-26" value="1" />
+
+
+
+
+
+1/10</label> <label><input type="radio" name="Problem-26" value="2" />
+
+
+
+
+
+1000</label> <label><input type="radio" name="Problem-26" value="3" />
+
+
+
+
+
+1/1000</label> <label><input type="radio" name="Problem-26" value="4" checked="checked" />
+
+
+
+
+
+1/10000</label></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 26 -->
+
+
+
+<ul>
+<li> What is the sum of <tt>12e3</tt> and <tt>32e-1</tt>?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 27-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD>&nbsp</td><td><p class="Instructions">Enter a number</p></TD>
+</TR>
+<TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><input type="text" name="Problem-27" value="12003.2" size="15" /></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 27 -->
+
+
+
+<ul>
+<li> The value <tt>5e-1</tt> is just:
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+2<sup>&#8722;1</sup>.</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Compute the value using <tt>^</tt>.
+<div class="p"><!----></div>
+(This isn't quite as easy as it looks, as the output of the power function (<tt>^</tt>) depends on the type of the input variable.)
+<div class="p"><!----></div>
+What command did you use:
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 28-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-28"  rows="3" cols="60" wrap="virtual"> 2.0^(-1),2^(-1.0)
+(0.5,0.5)</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 28 -->
+
+
+
+<div class="p"><!----></div>
+Julia has different storage type for integers (which are stored exactly, but have smaller bounds on their size); rational numbers (which are stored exactly in terms of a numerator and a denominator); real numbers (which are <i>approximated</i> by floating point numbers); and complex numbers (which may have either have integer or floating point values for the two components.) When <tt>julia</tt> parses a value, it will determine the type by how it is entered.
+<ul>
+<li> For example, the values <tt>2</tt>, <tt>2.0</tt>, <tt>2 + 0im</tt> and <tt>2//1</tt> are all the same and yet all different. What type is each?
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+
+
+<!-- BEGIN ANSWER 29-->
+<TABLE CLASS=DisplayProjectQuestion BORDER=0 WIDTH=80%><TR CLASS=DisplayProjectQuestion><TD CLASS=DisplayProjectQuestion VALIGN=TOP  WIDTH=5%><img alt="correct" src="/Matlab/icons/default/checkgrade-correct.gif" border="0" /><BR> You received <BR>100% of 10 points.</TD><TD CLASS=DisplayProjectQuestion ALIGN=TOP><font size="+1"><textarea name="Problem-29"  rows="3" cols="60" wrap="virtual">Integer, floating point (real), imaginary and rational</textarea></font></TD></TR>
+</TR></TABLE>
+
+<!--- END OF ANSWER 29 -->
+
+
+
+<div class="p"><!----></div>
+<div><input type="hidden" name=".cgifields" value="Problem-13"  /><input type="hidden" name=".cgifields" value="Problem-24"  /><input type="hidden" name=".cgifields" value="Problem-26"  /><input type="hidden" name=".cgifields" value="Problem-23"  /><input type="hidden" name=".cgifields" value="Problem-25"  /><input type="hidden" name=".cgifields" value="Problem-20"  /></div></form>
+</body>
+</html>
+<CENTER><HR WIDTH="75%"></CENTER>
+<CENTER><ADDRESS>Powered by <A HREF=/MATLAB/About>e-Pupils</A>. Copyright &copy; 1998-2001. All rights reserved.</ADDRESS></CENTER>
+</body>
+</html>
